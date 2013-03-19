@@ -1,0 +1,24 @@
+<% if(errors.length > 0 || messages.length > 0) { %>
+<div class="container">
+  <% if(errors.length > 0) { %>
+  <div class="alert alert-error">
+    <strong>Oh snap!</strong>
+    <ul class="unstyled">
+    <% for(i=0;i<errors.length;i++) { %>
+      <li><%= errors[i] %></li>
+    <% } %>
+    </ul>
+  </div>
+  <% } %>
+  <% if(messages.length > 0) { %>
+  <div class="alert alert-info">
+    <strong>Heads up!</strong>
+    <ul class="unstyled">
+    <% for(i=0;i<messages.length;i++) { %>
+      <li><%= messages[i] %></li>
+    <% } %>
+    </ul>
+  </div>
+  <% } %>
+</div>
+<% } %>

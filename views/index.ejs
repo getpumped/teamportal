@@ -1,0 +1,117 @@
+<% layout('./layouts/default') %>
+<div class="container">
+  <div class="hero-unit hidden-phone">
+    <h1>The Virtual London to Ho Chi Minh Team Relay Race!</h1>
+    <p></p>
+    <div>
+      <span>An epic virtual adventure - the ultimate endurance challenge that doesn’t
+        need a backpack</span>
+      <br>
+      <span>
+        <span class="text-success">Save Children's</span> lives in a virtual race half way around the world!</span>
+    </div>
+    <p></p>
+    <div>
+      <br> 
+    </div>
+    <p></p>
+    <p>
+      <a class="btn btn-success btn-large" href="javascript: openRegisterForm();"><span class="btn-label">Sign Up Today!</span></a> 
+    </p>
+  </div>
+  <a class="btn btn-large btn-primary btn-block visible-phone" href="#"><span class="btn-label">Sign Up Today!</span></a>
+  <div class="row main-features">
+    <div class="span4">
+      <div class="well">
+        <h3 class="pull-left">Get</h3><img class="pull-left" style="height: 50px; width: 171px;" src="/img/logo_trans.png"/>
+        <p style="clear: both;">Create or join a team, cycle, row, spin, jog, skate or swim in a 9,000 mile team relay race against other teams.</p>
+        <a class="btn btn-info" href="javascript: openRegisterForm();"><span class="btn-label">Sign up now</span></a> 
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well">
+        <h3>Track Your Progress</h3>
+        <p>Log all your miles on the site as you train, commute and play. Race other teams as your miles increase across the map to Ho Chi Minh</p>
+        <a class="btn btn-info" href="javascript: openRegisterForm();"><span class="btn-label">Sign up now</span></a> 
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well">
+        <h3>Make a Difference</h3>
+        <p>Pay for <span class="text-success">life saving heart surgery</span> for kids who otherwise won't get it. Know you've done <span class="text-success">something amazing</span> and good! </p>
+        <a class="btn btn-info" href="javascript: openRegisterForm();"><span class="btn-label">Sign up now</span></a> 
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <div class="well well-plain">
+        <h3>Overall Leaderboard</h3>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Team</th>
+              <th>Mileage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i=0;i<leaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= leaderboard[i]._id %></td>
+                  <td><%= leaderboard[i].value %>m</td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well well-plain">
+        <h3>Ironman Leaderboard</h3>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Member</th>
+              <th>Mileage</th>
+            </tr>
+          </thead>
+          <tbody>
+             <% for(i=0;i<ironmanLeaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= ironmanLeaderboard[i].username %></td>
+                  <td><%= ironmanLeaderboard[i].mileage %>m</td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well well-plain">
+        <h3>Most Commited</h3>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Member</th>
+              <th>Activities</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i=0;i<commitmentLeaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= commitmentLeaderboard[i]._id %></td>
+                  <td><%= commitmentLeaderboard[i].value %></td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

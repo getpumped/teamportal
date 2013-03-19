@@ -1,0 +1,32 @@
+<div id="signin-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="signinLabel" aria-hidden="true">
+  <% include ./signin %>
+</div>
+<div id="register-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="registerLabel" aria-hidden="true">
+  <% include ./register %>
+</div>
+
+<div class="header navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/"><img style="height: 50px; width: 171px;" src="/img/logo_trans.png"/></a>
+      <div class="navbar-content">
+        <ul class="nav ">
+          <li class="active">
+            <a href="/">Home</a> 
+          </li>
+          <li>
+            <a href="/stats">Stats</a> 
+          </li>
+          <li>
+            <a href="/private">Team Area</a> 
+          </li>
+        </ul>
+        <% if(user && user.isAuthenticated === true) { %>
+          <a class="btn btn-success pull-right"  style="margin-top:10px" href="/logout">Sign Out</a>
+        <% } else { %>
+          <a class="btn btn-success pull-right"  style="margin-top:10px" href="javascript: openSignForm();">Sign In</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<% layout('../layouts/default') %>
+<% var date = new Date(); %>
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      <div class="well">
+        <form action="/private/add-log" method="post">
+          <h2>Quick Log</h2>
+          <label>Date</label>
+          <input type="text" value="<%= defaultDate %>" data-date-format="dd/mm/yyyy" class="datepicker" name="date" required>
+          <p class="help-block"></p>
+          <label>Activity</label>
+          <select id="logtype" name="logtype" type="text" class="input-large">
+            <option value="Run">Run</option>
+            <option value="Cycle">Cycle</option>
+          </select>
+          <label>Mileage</label>
+          <input name="mileage" class="input-small" type="number" required
+          min="1" data-validation-min-message="Cannot enter 0 mileage">
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Add Log</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="row">
+        <div class="span4">
+          <div class="well well-plain">
+            <h3>Activity Log</h3>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th class="span3">Date</th>
+                  <th class="span7">Activity</th>
+                  <th class="span2">Mileage</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% for(i=0;i<logs.length;i++) { %>
+                <tr>
+                  <td><%= logs[i].date %></td>
+                  <td><%= logs[i].logtype %></td>
+                  <td><%= logs[i].mileage %>m</td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="row">
+        <div class="span4">
+          <div class="well well-plain">
+            <h3>Race Leaderboard</h3>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th class="span3">#</th>
+                  <th class="span7">Team</th>
+                  <th class="span2">Mileage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(i=0;i<leaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= leaderboard[i]._id %></td>
+                  <td><%= leaderboard[i].value %>m</td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+          </div>
+          <div class="well well-plain">
+            <h3>Team Leaderboard</h3>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th class="span3">#</th>
+                  <th class="span7">Member</th>
+                  <th class="span2">Mileage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(i=0;i<teamLeaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= teamLeaderboard[i]._id %></td>
+                  <td><%= teamLeaderboard[i].value %>m</td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+ $("#logtype").selectBoxIt();
+ $('.datepicker').datepicker()
+ </script>

@@ -1,0 +1,46 @@
+<% layout('../layouts/default') %>
+<div class="container">
+  <div class="row">
+    <div class="span8">
+      <div class="well">
+        <form action="/private/create-team" method="post">
+            <h2 id="createTeamLabel" class="form-signin-heading">Create a Team</h2>
+            <label>Team Name</label>
+            <input name="teamname" type="text" class="input-xlarge" 
+            pattern="^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$" data-validation-pattern-message="You must enter a team name"
+              required>
+            <p>Must start with a letter or number, can contain only letters, numbers,
+              space, underscore and hyphen.</p>
+            <label>Team Password</label>
+            <input name="teampassword" type="password" class="input-xlarge" 
+            pattern="^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$" data-validation-pattern-message="You must enter a team password"
+              required>
+            <p>This will be used in combination with your team name to allow others to
+              join your team.</p>
+            <label>Planned Personal Mileage</label>
+            <input name="plannedmileage" class="input-small" type="number" required
+            min="1" data-validation-min-message="Cannot enter 0 mileage">
+            <p>This is your planned mileage</p>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Create Team</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="row">
+        <div class="span4">
+          <div class="well">
+            <h3 class="pull-left">Get</h3><img class="pull-left" style="height: 50px; width: 171px;" src="/img/logo_trans.png"/>
+            <p style="clear: both;">Create or join a team, cycle, row, spin, jog, skate or swim in a 9,000 mile team relay race against other teams.</p>
+            <h3>Track Your Progress</h3>
+            <p>Log all your miles on the site as you train, commute and play. Race other teams as your miles increase across the map to Ho Chi Minh</p>
+            
+            <h3>Make a Difference</h3>
+            <p>Pay for <span class="text-success">life saving heart surgery</span> for kids who otherwise won't get it. Know you've done <span class="text-success">something amazing</span> and good! </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
