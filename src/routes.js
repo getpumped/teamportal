@@ -1,5 +1,4 @@
-var locals = require('../locals'),
-    pumped = require('./pumped'),
+var pumped = require('./pumped'),
     security = require('../security'),
     check = require('validator').check,
     dateFormat = require('dateformat'),
@@ -81,7 +80,7 @@ exports.private = function(req, res) {
               req.flash('errors', 'There was an error retrieving team leaderboard');
             }
             res.render('./private/private', { title: 'Team Member Area', logs: logs
-            , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), 
+              , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
               errors: req.flash('errors'), messages: req.flash('messages'),
               leaderboard: leaderboard, teamLeaderboard: teamLeaderboard});
            });

@@ -51,6 +51,12 @@ body {
 .container .credit {
   margin: 20px 0;
 }
+.datepicker td.day.disabled {
+  color: #ccc;
+}
+.datepicker td.day.disabled:hover {
+  background: none;
+}
 @media (max-width: 767px) {
   #footer {
     margin-left: -20px;

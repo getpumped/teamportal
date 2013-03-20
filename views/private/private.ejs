@@ -11,11 +11,18 @@
           <p class="help-block"></p>
           <label>Activity</label>
           <select id="logtype" name="logtype" type="text" class="input-large">
-            <option value="Run">Run</option>
             <option value="Cycle">Cycle</option>
+            <option value="Run">Gym workout</option>
+            <option value="Run">Netball</option>
+            <option value="Run">Pram March</option>
+            <option value="Run">Run</option>
+            <option value="Run">Skate</option>
+            <option value="Run">Ski</option>
+            <option value="Run">Spin</option>
+            <option value="Run">Swim</option>
           </select>
           <label>Mileage</label>
-          <input name="mileage" class="input-small" type="number" required
+          <input name="mileage" class="input-small" type="text" pattern="^([1-9]|\d{2,3}|\d{3}|(,\d{3}))*(\.\d{1,2})?$" required
           min="1" data-validation-min-message="Cannot enter 0 mileage">
           <div class="form-actions">
             <button class="btn btn-primary" type="submit">Add Log</button>
@@ -39,7 +46,7 @@
               <tbody>
               <% for(i=0;i<logs.length;i++) { %>
                 <tr>
-                  <td><%= logs[i].date %></td>
+                  <td><%= dateFormater(logs[i].date, "dd/mm/yyyy") %></td>
                   <td><%= logs[i].logtype %></td>
                   <td><%= logs[i].mileage %>m</td>
                 </tr>
@@ -102,5 +109,12 @@
 </div>
 <script>
  $("#logtype").selectBoxIt();
- $('.datepicker').datepicker()
+ var nowTemp = new Date();
+  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ $('.datepicker').datepicker({
+   onRender: function(date) {
+    return date.valueOf() > now.valueOf() ? 'disabled' : '';
+  }}).on('changeDate', function(ev){
+    $(ev.target).datepicker('hide');
+  });
  </script>
