@@ -11,7 +11,6 @@ var config = require('./config')
   , security = require('./security')
   , mongodb = require('mongodb')
   , MongoStore = require('connect-mongo')(express)
-  , helpers = require('./locals')
   , flash = require('connect-flash');
 
 app = express();
