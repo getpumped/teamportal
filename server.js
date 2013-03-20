@@ -16,7 +16,8 @@ var config = require('./config')
 
 app = express();
 new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(function (err, client) {
-	mongoClient = client;
+	if(err) console.log(err);
+  mongoClient = client;
   mongoClient.authenticate(config.dbUser, config.dbPass, {authdb: "admin"}, function(err, res) {
   app.configure(function(){
     app.set('port', process.env.PORT || 3000);
