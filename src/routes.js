@@ -154,7 +154,7 @@ exports.doLogin = function(req, res){
     return res.redirect('/login');
   }
   security.authenticate(req.body.email, function (err, user) {
-    if (err) { console.log(err); res.render('login', { Title: 'Login', errors: req.flash('errors'), messages: req.flash('messages') }); }
+    if (err) { console.log(err); res.render('login', { title: 'Login', errors: req.flash('errors'), messages: req.flash('messages') }); }
 		else {
 			req.session.user = user;
       if(user.teamname === null) {
