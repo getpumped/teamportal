@@ -108,8 +108,8 @@ module.exports = {
       if(results) {
         results.find().toArray(function(err, results) {
          callback(err, results.sort(function (a, b) {
-              if (a.mileage < b.mileage) return 1;
-              if (b.mileage < a.mileage) return -1;
+              if (a.value < b.value) return 1;
+              if (b.value < a.value) return -1;
               return 0;
           })); 
         });
@@ -137,8 +137,8 @@ module.exports = {
       if(results) {
         results.find().toArray(function(err, results) {
          callback(err, results.sort(function (a, b) {
-              if (a.mileage < b.mileage) return 1;
-              if (b.mileage < a.mileage) return -1;
+              if (a.value < b.value) return 1;
+              if (b.value < a.value) return -1;
               return 0;
           })); 
         });
@@ -166,8 +166,8 @@ module.exports = {
       if(results) {
         results.find().toArray(function(err, results) {
          callback(err, results.sort(function (a, b) {
-              if (a.mileage < b.mileage) return 1;
-              if (b.mileage < a.mileage) return -1;
+              if (a.value < b.value) return 1;
+              if (b.value < a.value) return -1;
               return 0;
           })); 
         });
