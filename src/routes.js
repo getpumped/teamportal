@@ -154,8 +154,10 @@ exports.doLogin = function(req, res){
     return res.redirect('/login');
   }
   security.authenticate(req.body.email, function (err, user) {
-    if (err) { console.log(err); res.render('login', { title: 'Login', errors: req.flash('errors'), messages: req.flash('messages') }); }
-		else {
+    if (err) {
+      req.flash('errors', 'You are not registered to use this application'); //Need to output these errors to the screen for the user
+      return res.redirect('/login');
+    } else {
 			req.session.user = user;
       if(user.teamname === null) {
       	res.redirect('/private/choose-team');
