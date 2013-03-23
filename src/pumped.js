@@ -91,10 +91,24 @@ module.exports = {
   },
   updateTeam: function(id, values, callback) {
     var teams = mongoClient.collection('teams');
-    var o_id = new BSON.ObjectID(id);
-    teams.update({ _id: o_id }, { $set: values }, function(err, result) {
-      callback(err);
+    if(id != null && 'number' != typeof id && (id.length != 12 && id.length != 24)) {
+      var o_id = id
+    } else var o_id = new BSON.ObjectID(id);
+    teams.findAndModify({ _id: o_id}, [['_id','asc']], { $set: values }, { new: true }, function(err, result) {
+      callback(err, result);
     })
+  },
+  getTeam: function(teamid, callback) {
+    var teams = mongoClient.collection('teams');
+    teams.findOne({ _id: teamid }, function(err, team) {
+      if(err) {
+        callback('The was an error retrieving team details, please try again.', null);
+      } else if(team === null) {
+        callback('We couldn\'t find the team details, this team may not exist or you may have an incorrect address', null);
+      } else {
+        callback(null, team);
+      }
+    });
   },
   saveLog: function(log, callback) {
     var teamlogs = mongoClient.collection('teamlogs');
@@ -105,6 +119,12 @@ module.exports = {
   getUserLogs: function(username, options, callback) {
     var teamlogs = mongoClient.collection('teamlogs');
     teamlogs.find({ username: username }, options).toArray(function (err, logs) {
+        callback(err, logs);
+    });
+  },
+  getTeamLogs: function(teamname, options, callback) {
+    var teamlogs = mongoClient.collection('teamlogs');
+    teamlogs.find({ teamname: teamname }, options).toArray(function (err, logs) {
         callback(err, logs);
     });
   },

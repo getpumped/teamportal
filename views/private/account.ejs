@@ -51,6 +51,14 @@
                   <input  name="teamupdates" type="checkbox"<%= (user.teamupdates === true ? ' checked' : '') %> value="true"> Team Updates</label>
               </div>
             </div>
+            <% if(user.isteamlead) { %>
+            <div class="control-group">
+              <label class="control-label" for="teamfundraisingpage">Team Fundraising Page</label>
+              <div class="controls">
+                <input type="text" placeholder="Enter Url" class="input-xxlarge" id="teamfundraisingpage" name="teamfundraisingpage" value="<%= team.teamfundraisingpage || '' %>" /> 
+              </div>
+            </div>
+            <% } %>
             <div class="form-actions">
               <input type="reset" class="btn" value="Reset">
               <button type="submit" class="btn btn-primary">Update</button>

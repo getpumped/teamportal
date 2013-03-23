@@ -30,7 +30,7 @@ exports.createAccount = function(req, res) {
 };
 
 exports.account = function(req, res) {
-  res.render('./private/account', { title: 'User Profile', errors: req.flash('errors'), messages: req.flash('messages') });
+  private.account(req, res);
 }
 
 exports.accountUpdate = function(req, res) {
@@ -74,3 +74,11 @@ exports.joinTeam = function(req, res) {
 exports.doJoinTeam = function(req, res) {
   private.doJoinTeam(req, res);
 };
+
+exports.team = function(req, res) {
+  public.team(req, res);
+}
+
+exports.admin = function(req, res) {
+  private.admin(req, res);
+}

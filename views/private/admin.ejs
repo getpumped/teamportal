@@ -1,0 +1,38 @@
+<% layout('./layouts/default') %>
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      <h2>Settings</h2>
+      <form class="form" href="/private/admin/settings">
+        <label class="checkbox" for="checkbox">
+          <input type="checkbox" value="true" id="checkbox" name="checkbox"> Enable Mailer</label>
+      </form>
+    </div>
+    <div class="span4">
+      <h2>Jobs</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="vertical-align: middle">Send Team Updates</td>
+            <td>
+              <a class="btn" href="/private/admin/runjob?j=teamupdates">Run</a> 
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: middle">Build Stat Tables</td>
+            <td>
+              <a class="btn" href="/private/admin/runjob?j=buildstats">Run</a> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span4"></div>
+  </div>
+</div>

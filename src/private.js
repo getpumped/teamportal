@@ -11,7 +11,7 @@ module.exports = {
     if(req.session.user.teamname === null) {
       res.redirect('/private/choose-team');
     } else {
-      pumped.getUserLogs(req.session.user.username, { limit: 10, skip: 0, sort: 'date' },
+      pumped.getUserLogs(req.session.user.username, { limit: 10, skip: 0, sort: {'date': -1} },
         function(err, logs) {
           if(err) {
             req.flash('errors', 'There was an error retrieving activity logs');
@@ -35,6 +35,23 @@ module.exports = {
         });
     }
   },
+  account: function(req, res) {
+    pumped.getUser(req.session.user._id, function(err, user) {
+      if(err) {
+        req.flash('errors', err);
+        return res.redirect('/');
+      }
+      pumped.getTeam(user.teamId, function(err, team) {
+        if(err) {
+          req.flash('errors', err);
+          return res.redirect('/');
+        }
+        user.isAuthenticated = true;
+        req.session.user = user;
+        res.render('./private/account', { team: team, user: user, title: 'User Profile', errors: req.flash('errors'), messages: req.flash('messages') });
+      });
+    });
+  },
   addLog: function(req, res) {
     var dateparts = req.body.date.split('/');
     var date =  [dateparts[1], dateparts[0], dateparts[2]].join('/');
@@ -47,7 +64,7 @@ module.exports = {
       req.flash('errors', e.message); //Need to output these errors to the screen for the user
       return res.redirect('/private');
     }
-    pumped.saveLog({ date: date, logtype: req.body.logtype, mileage: parseInt(req.body.mileage),
+    pumped.saveLog({ date: date, logtype: req.body.logtype, mileage: parseFloat(req.body.mileage),
                     teamname: req.session.user.teamname, username: req.session.user.username },
                   function(err, result) {
                     if(err) {
@@ -64,6 +81,7 @@ module.exports = {
       check(req.body.plannedmileage, 'Invalid value entered for planned mileage').isInt(); 
       check(req.body.fundraisingtarget, 'Invalid value entered for fundraising target').isDecimal(); 
       check(req.body.fundraisingtotal, 'Invalid value entered for fundraising total').isDecimal(); 
+      check(req.body.teamfundraisingpage, 'Invalid value entered for fundraising total').isUrl(); 
     } catch (e) {
       req.flash('errors', e.message); //Need to output these errors to the screen for the user
       return res.redirect('/private/account');
@@ -79,8 +97,11 @@ module.exports = {
                                   req.session.user = user;
                                   req.flash('messages', 'You\'re account has been updated.');
                                 }
-                                res.redirect('/private/account');
-                              });
+                         pumped.updateTeam(user.teamId, { teamfundraisingpage: req.body.teamfundraisingpage }, function(err, team) {
+                           if(err) req.flash('messages', 'Updates to your team fundraising page may not have been made.');
+                           res.redirect('/private/account');
+                         });
+                       });
   },
   doCreateTeam: function(req, res) {
     try {
@@ -106,7 +127,8 @@ module.exports = {
             } else {
               pumped.updateUser(req.session.user._id, { plannedmileage: req.body.plannedmileage
                               , teamname: team.teamname, teamId: team._id,
-                                fundraisingtarget: req.body.fundraisingtarget }, function(err, user) {
+                                                       fundraisingtarget: req.body.fundraisingtarget, isteamlead: true }
+                              , function(err, user) {
                                 mailer.sendMemberWelcome(user, function(err) {
                                   user.isAuthenticated = true;
                                   req.session.user = user;
@@ -159,5 +181,8 @@ module.exports = {
         }
       });
     }
+  },
+  admin: function(req, res) {
+    res.render('./private/account', { title: 'Admin Area', errors: req.flash('errors'), messages: req.flash('messages') });
   }
 }

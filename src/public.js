@@ -31,6 +31,39 @@ module.exports = {
           });
       });
   },
+  team: function(req, res) {
+    pumped.getTeam(new BSON.ObjectID(req.params.id), function(err, team) {
+      if(err) {
+        req.flash('errors', err);
+        return res.render('team', { team: team, title: '', logs: logs
+                , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
+                errors: req.flash('errors'), messages: req.flash('messages'),
+                leaderboard: [], teamLeaderboard: []});
+      }
+      pumped.getTeamLogs(team.teamname, { limit: 10, skip: 0, sort: {'date': -1} },
+        function(err, logs) {
+          if(err) {
+            req.flash('errors', 'There was an error retrieving activity logs');
+          }
+          pumped.getLeaderboard(function(err, leaderboard) {
+            console.log(leaderboard);
+            if(err) {
+              req.flash('errors', 'There was an error retrieving leaderboard');
+            }
+            pumped.getTeamLeaderboard(team.teamname, function(err, teamLeaderboard) {
+              console.log(teamLeaderboard);
+              if(err) {
+                req.flash('errors', 'There was an error retrieving team leaderboard');
+              }
+              res.render('team', { team: team, title: '', logs: logs
+                , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
+                errors: req.flash('errors'), messages: req.flash('messages'),
+                leaderboard: leaderboard, teamLeaderboard: teamLeaderboard});
+             });
+          });
+        });
+    });
+  },
   stats: function(req, res) {
     pumped.getLeaderboard(function(err, leaderboard) {
             console.log(leaderboard);
