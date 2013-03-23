@@ -24,7 +24,7 @@ module.exports = {
                 if(err) {
                   req.flash('errors', 'There was an error retrieving commitment leaderboard');
                 }
-                res.render('index', { title: 'Home', 
+                res.render('index', { title: 'Virtual Relay Race', 
                   errors: req.flash('errors'), messages: req.flash('messages'),
                   leaderboard: leaderboard, ironmanLeaderboard: ironmanLeaderboard, commitmentLeaderboard: commitmentLeaderboard});
              });
