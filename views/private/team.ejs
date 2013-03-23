@@ -1,0 +1,77 @@
+ <% layout('../layouts/default') %>
+ <h1><%= team.teamname %></h1>
+ <div class="span4">
+      <div class="row">
+        <div class="span4">
+          <div class="well well-plain">
+            <h3>Activity Log</h3>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th class="span3">Date</th>
+                  <th class="span7">Activity</th>
+                  <th class="span2">Mileage</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% for(i=0;i<logs.length;i++) { %>
+                <tr>
+                  <td><%= dateFormater(logs[i].date, "dd/mm/yyyy") %></td>
+                  <td><%= logs[i].logtype %></td>
+                  <td><%= logs[i].mileage %>m</td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="row">
+        <div class="span4">
+          <div class="well well-plain">
+            <h3>Race Leaderboard</h3>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th class="span3">#</th>
+                  <th class="span7">Team</th>
+                  <th class="span2">Mileage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(i=0;i<leaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= leaderboard[i]._id %></td>
+                  <td><%= leaderboard[i].value %>m</td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+          </div>
+          <div class="well well-plain">
+            <h3>Team Leaderboard</h3>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th class="span3">#</th>
+                  <th class="span7">Member</th>
+                  <th class="span2">Mileage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(i=0;i<teamLeaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= teamLeaderboard[i]._id %></td>
+                  <td><%= teamLeaderboard[i].value %>m</td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>

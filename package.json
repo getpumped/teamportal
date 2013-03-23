@@ -12,7 +12,9 @@
     "validator": "~0.4.28",
     "dateformat": "~1.0.6-1.2.3",
     "connect-flash": "~0.1.0",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "mailchimp": "~0.9.5",
+    "async": "~0.2.6"
   },
   "main": "server.js"
 }

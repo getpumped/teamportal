@@ -1,0 +1,118 @@
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
+  <tr>
+    <td align="center" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td valign="top" width="600">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4; padding: 0px 20px 0px 20px; border-left:1px solid #bbbbbb;border-right:1px solid #bbbbbb">
+              <tr>
+                <td valign="top" class="bodyContent" mc:edit="body_content">
+                  <table align="left" border="0" cellpadding="0" cellspacing="0" width="false" style="border-collapse:collapse">
+                    <tbody>
+                      <tr>
+                        <td align="left" valign="top" style="border-collapse:collapse">
+                          <h1 style="font-size:26px;">Hey <%= merge_vars.MC_USER_NAME %></h1>
+                          <h2>Thank You and Welcome</h2>
+                          <p style="color:#a52a2a">You have registered to GET PUMPED with your new teammates in <%= merge_vars.MC_TEAM_NAME %>.<br>You are an epic innovator and you will save lives. Real lives.</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table align="left" border="0" cellpadding="0" cellspacing="0" width="false" style="border-collapse:collapse">
+                    <tbody>
+                      <tr>
+                        <td align="left" valign="top" style="border-collapse:collapse">
+                          <img alt="" src="http://gallery.mailchimp.com/3e9ced8ead378e6b087ce80d9/images/Howitworks065778.png" width="150" style="max-width:150px;border:0;min-height:auto;line-height:100%;outline:none;text-decoration:none;vertical-align:bottom"/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td valign="top" style="padding:0 9px 0 9px;border-collapse:collapse;color:#505050;font-family:Helvetica;font-size:14px;line-height:150%;text-align:left" width="564">
+                          <p>You can sign-in and log all your miles on <a href="<%= merge_vars.portalUrl %>">team pumped</a>. You and your teammates will race from London to Ho Chi Minh, motivating each other, keeping fit and saving lives.</p>
+                          <p>You can count activity that makes you puffed and isn't normal life... &nbsp;so any exercise you want, that people will 
+                          sponsor you for, that you can hold your head up and be proud that you did.</p>
+                          <p><strong>Log: </strong>Hikes, cycles, spin classes, pram marches, runs, swims, skates<br>
+                          <strong>Don't log:</strong> Daily dog walks, walking around the office, shopping!
+                          </p>
+                          <p>You get the idea!&nbsp;</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table align="left" border="0" cellpadding="0" cellspacing="0" width="false" style="border-collapse:collapse">
+                    <tbody>
+                      <tr>
+                        <td align="left" valign="top" style="border-collapse:collapse">
+                          <img alt="" src="http://gallery.mailchimp.com/3e9ced8ead378e6b087ce80d9/images/WHatNextd8a5c6.png" width="150" style="max-width:150px;border:0;min-height:auto;line-height:100%;outline:none;text-decoration:none;vertical-align:bottom">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td valign="top" style="border-collapse:collapse;color:#505050;font-family:Helvetica;font-size:14px;line-height:150%;text-align:left" width="564">
+                        <p>All you need to do is:</p>
+                        <ol>
+                          <li>Get your team-mates to register if they haven't</li>
+                          <li>Let people know that you are taking on the challenge</li>
+                          <li>Let me know what else will help you</li>
+                        </ol>
+                        <p>You&quot;ll receive weekly team updates providing a breakdown of your personal and team progress as well as a general monthly update.</p>
+                        <p>We wish you the very best of luck</p>
+                        <p><strong>Thank you<br>
+                        Team Pumped</strong></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+exports.memberWelcome = function(req, res) {
+  var merge_vars = { "MC_SUBJECT": "Get PUMPED! " + req.session.user.teamname + " Update",
+                    "MC_TEAM_LINK": encodeURI(req.protocol + '://' + req.host + '/team/' + req.session.user.teamId),
+                    "MC_TEAM_NAME": req.session.user.teamname, "MC_USER_NAME": req.session.user.username,
+                    "unsubscribeUrl": encodeURI(req.protocol + '://' + req.host + '/teamupdates/unsubscribe?uid' + req.session.user._id), 
+                    "profileUrl": encodeURI(req.protocol + '://' + req.host + '/private/account'),
+                    "portalUrl": encodeURI(req.protocol + '://' + req.host + '/')};
+  var file = 'views/emails/member-welcome.ejs';
+  fs.readFile(file, 'utf8', function(err, template) {
+     console.log(template);
+    ejs.render(template, { filename: file,
+        compileDebug: true, title: 'Team Update', defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
+                                         errors: req.flash('errors'), messages: req.flash('messages'), merge_vars: merge_vars}
+             ,function(err, html) {
+                                           var params = { "message": { "html": html,"subject": "Team Update",
+                                                                      "from_email": config.emailFrom, "from_name": config.emailFromName,
+                                                                      "to": [{"email": req.session.user.email,"name": req.session.user.username}],
+                                                                      "track_opens": true,  "track_clicks": true,"auto_text": true,"auto_html": false,
+                                                                      "inline_css": true,"url_strip_qs": true,"preserve_recipients": false,
+                                                                      "bcc_address": config.bccEmail,"tags": ["Member Welcome"] },"async": true }
+                                           if(err) res.send(err)
+                                           else {
+                                             /*mailer.mandrill.call('messages', 'send', params, function (error, data) {
+                      if (error)
+                          res.send(error.message);
+                      else
+                          res.send(JSON.stringify(data)); // Do something with your data!
+                  });*/
+                  res.send(html);
+                }
+              });
+  });

@@ -22,8 +22,8 @@
             <option value="Run">Swim</option>
           </select>
           <label>Mileage</label>
-          <input name="mileage" class="input-small" type="text" pattern="^([1-9]|\d{2,3}|\d{3}|(,\d{3}))*(\.\d{1,2})?$" required
-          min="1" data-validation-min-message="Cannot enter 0 mileage">
+          <input name="mileage" class="input-small" type="text" pattern="^([0-9]|\d{2,3}|\d{3}|(,\d{3}))*(\.\d{1,2})?$" required
+          min="0.1" data-validation-min-message="Cannot enter 0 mileage">
           <div class="form-actions">
             <button class="btn btn-primary" type="submit">Add Log</button>
           </div>

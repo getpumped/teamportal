@@ -11,7 +11,9 @@ var config = require('./config')
   , security = require('./security')
   , mongodb = require('mongodb')
   , MongoStore = require('connect-mongo')(express)
-  , flash = require('connect-flash');
+  , flash = require('connect-flash')
+  , mailer = require('./src/mailer')
+  , emailTests = require('./src/email_tests.js');
 
 app = express();
 new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(function (err, client) {
@@ -46,6 +48,8 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
   /* Add routes below */
   app.get('/', routes.index);
   app.post('/register', routes.createAccount);
+  app.get('/private/account', routes.account);
+  app.post('/private/account/update', routes.accountUpdate);
   app.get('/register', routes.register);
   app.post('/login', routes.doLogin);
   app.get('/login', routes.login);
@@ -58,12 +62,15 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
   app.get('/private/choose-team', routes.chooseTeam);
   app.post('/private/add-log', routes.addLog);
   app.get('/stats', routes.stats);
+  /* email test rendering routes */
+  app.get('/email-tests/team-update', emailTests.teamUpdate)
+  app.get('/email-tests/member-welcome', emailTests.memberWelcome)
   
   //app.get('/users', user.list);
   
   http.createServer(app).listen(config.port, config.ipaddr, function() {
     console.log("Express server listening on port " + config.port);
-  });
+    });
   });
 });
 

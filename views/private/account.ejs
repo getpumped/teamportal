@@ -1,0 +1,63 @@
+<% layout('../layouts/default') %>
+<div class="container">
+  <h1>Your Pumped Profile</h1>
+  <div class="row">
+    <div class="span4" style="padding-top: 5px;">
+      <p>You can update your profile here. Setting your planned mileage target,
+        fundraising target/progress as well as your email preferences.</p>
+      <p>Its not currently possible to change your username or email address within
+        the system, if you need to please send an email request to support@pumped.org.uk.</p>
+    </div>
+    <div class="span8">
+      <div class="row">
+        <div class="span8">
+          <form class="form-horizontal" action="/private/account/update" method="post">
+            <div class="control-group">
+              <label class="control-label">Username</label>
+              <div class="controls">
+                <span class="uneditable-input input-xlarge"><%= user.username %></span> 
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputEmail">Email</label>
+              <div class="controls">
+                <span class="uneditable-input input-xlarge"><%= user.email %></span> 
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="plannedmileage">Planned Mileage</label>
+              <div class="controls">
+                <input type="text" placeholder="0" class="input-small" id="plannedmileage" name="plannedmileage" value="<%= user.plannedmileage %>" /> 
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="fundraisingtarget">Fundraising Target</label>
+              <div class="controls">
+                <input type="text" placeholder="0" class="input-small" id="fundraisingtarget" name="fundraisingtarget" value="<%= user.fundraisingtarget || 0 %>" /> 
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="fundraisingtotal">Fundraising Total</label>
+              <div class="controls">
+                <input type="text" placeholder="0" class="input-small" id="fundraisingtotal" name="fundraisingtotal" value="<%= user.fundraisingtotal || 0 %>" /> 
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Email Preferences</label>
+              <div class="controls">
+                <label class="checkbox">
+                  <input name="newsletters" type="checkbox"<%= (user.newsletters === true ? ' checked' : '') %> value="true"> Newsletter</label>
+                <label class="checkbox">
+                  <input  name="teamupdates" type="checkbox"<%= (user.teamupdates === true ? ' checked' : '') %> value="true"> Team Updates</label>
+              </div>
+            </div>
+            <div class="form-actions">
+              <input type="reset" class="btn" value="Reset">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

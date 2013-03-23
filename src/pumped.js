@@ -36,9 +36,28 @@ module.exports = {
   updateUser: function(id, values, callback) {
     var users = mongoClient.collection('users');
     var o_id = new BSON.ObjectID(id);
-    users.update({ _id: o_id}, { $set: values }, function(err, result) {
-      callback(err);
+    users.findAndModify({ _id: o_id}, [['_id','asc']], { $set: values }, { new: true }, function(err, result) {
+      callback(err, result);
     })
+  },
+  deleteUser: function(id, callback) {
+    var users = mongoClient.collection('users');
+    users.remove({ _id: id }, function(err, numberOfRemovedDocs) {
+      callback(err, numberOfRemovedDocs);
+    })
+  },
+  getUser: function(id, callback) {
+    var users = mongoClient.collection('users');
+    var o_id = new BSON.ObjectID(id);
+    users.findOne({ _id: o_id}, function(err, user) {
+      if(err) {
+        callback('The was an error retrieving user details, please try again.', null);
+      } else if(user === null) {
+        callback('We couldn\'t find you user details, please logout and try again', null);
+      } else {
+        callback(null, user);
+      }
+    });
   },
   checkTeamExists: function(team, callback) {
     var teams = mongoClient.collection('teams');
@@ -98,7 +117,7 @@ module.exports = {
         printjson(v);
           count = 0;
           for(i = 0; i < v.length; i++) {
-              count += parseInt(v[i]);
+              count += parseFloat(v[i]);
           }
           return count;
       }
@@ -118,22 +137,21 @@ module.exports = {
       }
     });
   },
-  getTeamLeaderboard: function(callback) {
+  getTeamLeaderboard: function(teamname, callback) {
     var teamlogs = mongoClient.collection('teamlogs');
      // Map function
     var map = function() { emit(this.username, this.mileage); };
     // Reduce function
       var reduce = function(k, v){
-        printjson(v);
           count = 0;
           for(i = 0; i < v.length; i++) {
-              count += parseInt(v[i]);
+              count += parseFloat(v[i]);
           }
           return count;
       }
     
     // Execute map reduce and return results inline
-    teamlogs.mapReduce(map, reduce, {out: {replace : 'tempCollection'}}, function(err, results) {
+      teamlogs.mapReduce(map, reduce, { query: { teamname: teamname }, out: {replace : 'tempCollection'}}, function(err, results) {
       if(results) {
         results.find().toArray(function(err, results) {
          callback(err, results.sort(function (a, b) {
@@ -153,7 +171,6 @@ module.exports = {
     var map = function() { emit(this.username, 1); };
     // Reduce function
       var reduce = function(k, v){
-        printjson(v);
           count = 0;
           for(i = 0; i < v.length; i++) {
               count += v[i];
@@ -178,9 +195,30 @@ module.exports = {
   },
   getIronmanLeaderboard: function(callback) {
     var teamlogs = mongoClient.collection('teamlogs');
-    teamlogs.find({}, { limit: 10, sort: {'mileage': -1}}).toArray(function (err, results) {  
-      if(results) callback(err, results);
-      else callback(err,[]);
+     // Map function
+    var map = function() { emit(this.username, this.mileage); };
+    // Reduce function
+    var reduce = function(k, v){
+      max = 0;
+      for(i = 0; i < v.length; i++) {
+        if(max < parseFloat(v[i])) max = parseFloat(v[i]);
+      }
+      return max;
+    }
+    
+    // Execute map reduce and return results inline
+    teamlogs.mapReduce(map, reduce, { out: {replace : 'tempCollection'}}, function(err, results) {
+      if(results) {
+        results.find().toArray(function(err, results) {
+         callback(err, results.sort(function (a, b) {
+              if (a.value < b.value) return 1;
+              if (b.value < a.value) return -1;
+              return 0;
+          })); 
+        });
+      } else {
+        callback(err, []);
+      }
     });
   }
 }

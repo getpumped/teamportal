@@ -10,8 +10,8 @@
     <div class="container">
       <a class="brand" href="/"><img style="height: 50px; width: 171px;" src="/img/logo_trans.png"/></a>
       <div class="navbar-content">
-        <ul class="nav ">
-          <li class="active">
+        <ul class="nav">
+          <li>
             <a href="/">Home</a> 
           </li>
           <li>
@@ -22,9 +22,19 @@
           </li>
         </ul>
         <% if(user && user.isAuthenticated === true) { %>
-          <a class="btn btn-success pull-right"  style="margin-top:10px" href="/logout">Sign Out</a>
+          <div class="btn-group pull-right" style="margin-top:10px">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><%= user.username %>&nbsp&nbsp;<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="/private/account">Profile</a> 
+            </li>
+            <li>
+              <a href="/logout">Sign Out</a> 
+            </li>
+          </ul>
+        </div>
         <% } else { %>
-          <a class="btn btn-success pull-right"  style="margin-top:10px" href="javascript: openSignForm();">Sign In</a>
+          <a class="btn btn-success pull-right" style="margin-top:10px" href="javascript: openSignForm();">Sign In</a>
         <% } %>
       </div>
     </div>

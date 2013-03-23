@@ -1,0 +1,66 @@
+<% layout('./layouts/default') %>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
+<tr>
+<td align="center" valign="top">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top" width="600">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4; padding: 0px 20px 0px 20px; border-left:1px solid #bbbbbb;border-right:1px solid #bbbbbb">
+<tr>
+<td valign="top" class="bodyContent" mc:edit="body_content">
+<h1 style="font-size:26px;">Hey <%= merge_vars.MC_USER_NAME %></h1>
+<p>This is your weekly team update for <%= merge_vars.MC_TEAM_NAME %></p>
+<h2>Race Update</h2>
+<h3>Overal Leaderboard</h3>
+<table style="width:100%;" class="table table-condensed">
+<thead>
+<tr>
+<th style="width:10%;">
+#</th>
+<th style="width:45%;">
+Team</th>
+<th style="width:45%;">
+Mileage</th>
+</tr>
+</thead>
+<tbody>
+<% for(i=0;i<leaderboard.length;i++) { %>
+  <tr>
+    <td><%= i+1 %></td>
+    <td><%= leaderboard[i]._id %></td>
+    <td><%= leaderboard[i].value %>m</td>
+  </tr>
+<% } %>
+</tbody>
+</table>
+<h3>Team Leaderboard</h3>
+<table style="width:100%;" class="table table-condensed">
+<thead>
+<tr>
+<th style="width:10%;">
+#</th>
+<th style="width:45%;">
+Member</th>
+<th style="width:45%;">
+Mileage</th>
+</tr>
+</thead>
+<tbody>
+<% for(i=0;i<teamLeaderboard.length;i++) { %>
+  <tr>
+    <td><%= i+1 %></td>
+    <td><%= teamLeaderboard[i]._id %></td>
+    <td><%= teamLeaderboard[i].value %>m</td>
+  </tr>
+<% } %>
+<tbody>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>

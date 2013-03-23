@@ -40,8 +40,8 @@
              <% for(i=0;i<ironmanLeaderboard.length;i++) { %>
                 <tr>
                   <td><%= i+1 %></td>
-                  <td><%= ironmanLeaderboard[i].username %></td>
-                  <td><%= ironmanLeaderboard[i].mileage %>m</td>
+                  <td><%= ironmanLeaderboard[i]._id %></td>
+                  <td><%= ironmanLeaderboard[i].value %>m</td>
                 </tr>
               <% } %>
           </tbody>
