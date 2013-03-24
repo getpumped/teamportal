@@ -29,7 +29,7 @@ module.exports = {
               res.render('./private/private', { title: 'Team Member Area', logs: logs
                 , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
                 errors: req.flash('errors'), messages: req.flash('messages'),
-                leaderboard: leaderboard, teamLeaderboard: teamLeaderboard});
+                                               leaderboard: leaderboard, teamLeaderboard: teamLeaderboard, showShareButtons: true });
              });
           });
         });
@@ -132,7 +132,7 @@ module.exports = {
                                 mailer.sendMemberWelcome(user, function(err) {
                                   user.isAuthenticated = true;
                                   req.session.user = user;
-                                  req.flash('messages', 'Your team has been created');    
+                                  req.flash('messages', 'Your team has been created'); 
                                   res.redirect('/private');
                                 });
                             });
