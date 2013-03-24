@@ -23,7 +23,7 @@
         </ul>
         <% if(user && user.isAuthenticated === true) { %>
           <div class="btn-group pull-right" style="margin-top:10px">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><%= user.username %>&nbsp&nbsp;<span class="caret"></span></a>
+          <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"><%= user.username %>&nbsp&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li>
               <a href="/private/account">Profile</a> 

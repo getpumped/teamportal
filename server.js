@@ -71,7 +71,7 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
   
   //app.get('/users', user.list);
   
-  app.locals.portalUrl = config.portalUrl;
+  app.locals.portalUrl = config.appProtocol + '://' + config.appDNS + '/'
   http.createServer(app).listen(config.port, config.ipaddr, function() {
     console.log("Express server listening on port " + config.port);
     });
