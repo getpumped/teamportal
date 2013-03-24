@@ -62,7 +62,8 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
   app.get('/private/choose-team', routes.chooseTeam);
   app.post('/private/add-log', routes.addLog);
   app.get('/stats', routes.stats);
-    app.get('/team/:id', routes.team);
+  app.get('/stats-emb', routes.statsEmb);
+  app.get('/team/:id', routes.team);
   app.get('/private/admin', routes.admin);
     
   /* email test rendering routes */

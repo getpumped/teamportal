@@ -87,6 +87,29 @@ module.exports = {
           });
       });
   },
+  statsEmb: function(req, res) {
+    pumped.getLeaderboard(function(err, leaderboard) {
+            console.log(leaderboard);
+            if(err) {
+              req.flash('errors', 'There was an error retrieving leaderboard');
+            }
+            pumped.getIronmanLeaderboard(function(err, ironmanLeaderboard) {
+              console.log(ironmanLeaderboard);
+              if(err) {
+                req.flash('errors', 'There was an error retrieving ironman leaderboard');
+              }
+              pumped.getCommittedLeaderboard(function(err, commitmentLeaderboard) {
+                console.log(commitmentLeaderboard);
+                if(err) {
+                  req.flash('errors', 'There was an error retrieving commitment leaderboard');
+                }
+                res.render('stats_embeddable', { title: 'Race Stats', 
+                  errors: req.flash('errors'), messages: req.flash('messages'),
+                  leaderboard: leaderboard, ironmanLeaderboard: ironmanLeaderboard, commitmentLeaderboard: commitmentLeaderboard});
+             });
+          });
+      });
+  },
   createAccount: function(req, res) {
     try {
       check(req.body.username, 'Invalid username entered').is(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/)
@@ -152,6 +175,7 @@ module.exports = {
         req.flash('errors', 'You are not registered to use this application'); //Need to output these errors to the screen for the user
         return res.redirect('/login');
       } else {
+        req.flash('messages','You\'ve successfully signed-in.');
         req.session.user = user;
         if(user.teamname === null) {
           res.redirect('/private/choose-team');

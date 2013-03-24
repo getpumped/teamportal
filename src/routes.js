@@ -9,6 +9,10 @@ exports.stats = function(req, res) {
   public.stats(req, res);
 };
 
+exports.statsEmb = function(req, res) {
+  public.statsEmb(req, res);
+};
+
 exports.about = function(req, res) {
   res.render('about', { title: 'About', errors: req.flash('errors'), messages: req.flash('messages') });
 };

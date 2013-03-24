@@ -1,0 +1,75 @@
+<% layout('./layouts/embeddable') %>
+<div class="container">
+  <h1>Race Stats</h1>
+<div class="row">
+    <div class="span4">
+      <div class="well well-plain">
+        <h3>Overall Leaderboard</h3>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Team</th>
+              <th>Mileage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i=0;i<leaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= leaderboard[i]._id %></td>
+                  <td><%= leaderboard[i].value %>m</td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well well-plain">
+        <h3>Ironman Leaderboard</h3>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Member</th>
+              <th>Mileage</th>
+            </tr>
+          </thead>
+          <tbody>
+             <% for(i=0;i<ironmanLeaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= ironmanLeaderboard[i]._id %></td>
+                  <td><%= ironmanLeaderboard[i].value %>m</td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well well-plain">
+        <h3>Most Commited</h3>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Member</th>
+              <th>Activities</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i=0;i<commitmentLeaderboard.length;i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= commitmentLeaderboard[i]._id %></td>
+                  <td><%= commitmentLeaderboard[i].value %></td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

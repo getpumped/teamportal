@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pumped :: <%= title %></title>
+    <meta name="title" content="Pumped :: Virtual Relay Race"/>
+    <meta name="description" content="An epic virtual adventure - the ultimate endurance challenge that doesn’t need a backpack Save Children's lives in a virtual race half way around the world!"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel='stylesheet' href='/css/style.css' />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery-ui-1.10.2.custom.js"></script>
+    <script src="/js/bootstrap.js"></script>
+ </head>
+  <body>
+  <div id="wrap">
+    <div class="container" id="main-container">
+    <%- body -%>
+    </div>
+    <div id="push"></div>
+  </div>
+  <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2013 Pumped</p>
+      </div>
+    </div>
+<script>
+  $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+</body>
+</html>
