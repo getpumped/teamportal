@@ -29,7 +29,7 @@ module.exports = {
               res.render('./private/private', { title: 'Team Member Area', logs: logs
                 , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
                 errors: req.flash('errors'), messages: req.flash('messages'),
-                                               leaderboard: leaderboard, teamLeaderboard: teamLeaderboard, showShareButtons: true });
+                                               leaderboard: leaderboard, teamLeaderboard: teamLeaderboard });
              });
           });
         });
