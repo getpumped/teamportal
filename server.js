@@ -94,7 +94,7 @@ authoriseRoute = function (req, res, callback) {
 }
 
 function getStatRefreshDate() {
-  fs.exists(config.statDateFile, function (exists) {
+  exists(config.statDateFile, function (exists) {
     if(exists) {
       fs.lstat(config.statDateFile, function(err, stats) {
         if(err) app.locals.statrefreshdate = 'never';
