@@ -77,7 +77,10 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
   //app.get('/users', user.list);
   
   app.locals.portalUrl = config.appProtocol + '://' + config.appDNS + '/'
-  getStatRefreshDate();
+  require('./src/jobs').setup(function(err) {
+    if(err) console.log('Jobs setup has failed\n' + err);
+    else console.log('Jobs have been started');
+  });
   http.createServer(app).listen(config.port, config.ipaddr, function() {
     console.log("Express server listening on port " + config.port);
     });
@@ -94,7 +97,7 @@ authoriseRoute = function (req, res, callback) {
 }
 
 function getStatRefreshDate() {
-  exists(config.statDateFile, function (exists) {
+  /*exists(config.statDateFile, function (exists) {
     if(exists) {
       fs.lstat(config.statDateFile, function(err, stats) {
         if(err) app.locals.statrefreshdate = 'never';
@@ -105,10 +108,10 @@ function getStatRefreshDate() {
       app.locals.statrefreshdate = 'never';
     }
   });
-  
+  */
 }
 
-fs.watchFile(config.statDateFile, { persistent: true, interval: 5007 }, function (curr, prev) {
+/*fs.watchFile(config.statDateFile, { persistent: true, interval: 5007 }, function (curr, prev) {
   console.log('statdatefile changed');
   app.locals.statrefreshdate = dateFormat(curr.mtime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-});
+});*/

@@ -1,22 +1,28 @@
-var async = require('async'),
-    stats = require('./stats');
+var buildstats = require('../jobs/buildstats'),
+    getlaststatrefresh = require('../jobs/getlaststatrefresh');
 module.exports = {
-  teamUpdates: function(callback) {
-    
-  },
-  buildStats: function(callback) {
-    async.series([
-        stats.buildLeaderboard,
-        stats.buildTeamLeaderboard,
-        stats.buildCommittedLeaderboard,
-        stats.buildIronmanLeaderboard
-    ],
-    // optional callback
-    function(err, results){
-        if(err) {
-          //Need to log the error here
-        }
-        if(callback) callback(err);
+  setup: function(callback) {
+    buildstats.setup(function(err) {
+      var cronJob = require('cron').CronJob;
+      var job = new cronJob('1 * * * * *', function(){
+        buildstats.run(function(err) {
+          if(err) console.log(err);
+        })
+      }, function () {
+        // This function is executed when the job stops
+        console.log('job stopped');
+      },true,'UTC');
+    });
+    getlaststatrefresh.setup(function(err) {
+      var cronJob = require('cron').CronJob;
+      var job = new cronJob('1 * * * * *', function(){
+        getlaststatrefresh.run(function(err) {
+          if(err) console.log(err);
+        })
+      }, function () {
+        // This function is executed when the job stops
+        console.log('job stopped');
+      },true,'UTC');
     });
   }
 }

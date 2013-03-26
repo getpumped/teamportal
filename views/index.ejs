@@ -25,6 +25,18 @@
     </div>
   </div>
   <a class="btn btn-large btn-primary btn-block visible-phone" href="javascript: openRegisterForm();"><span class="btn-label">Sign Up Today!</span></a>
+  <div class="row">
+    <div class="span8">
+      <div class="well">
+        <% include ./snippets/race-map %>
+      </div>
+    </div>
+  <div class="span4">
+      <div class="well well-plain">
+         <% include ./snippets/overall-leaderboard %>
+      </div>
+    </div>
+  </div>
   <div class="row main-features">
     <div class="span4">
       <div class="well">
@@ -49,11 +61,6 @@
     </div>
   </div>
   <div class="row">
-    <div class="span4">
-      <div class="well well-plain">
-         <% include ./snippets/overall-leaderboard %>
-      </div>
-    </div>
     <div class="span4">
       <div class="well well-plain">
         <% include ./snippets/ironman-leaderboard %>
