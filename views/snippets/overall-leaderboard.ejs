@@ -1,0 +1,19 @@
+<h3>Overall Leaderboard</h3>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Team</th>
+      <th>Mileage</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% for(i=0;i<leaderboard.length;i++) { %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= leaderboard[i]._id.teamname %></td>
+      <td><%= leaderboard[i].value %>m</td>
+    </tr>
+  <% } %>
+  </tbody>
+</table>

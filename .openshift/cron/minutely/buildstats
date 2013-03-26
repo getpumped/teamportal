@@ -1,0 +1,3 @@
+#! /bin/bash
+nohup /usr/bin/node $OPENSHIFT_REPO_DIR/jobs/buildstats.js  > $OPENSHIFT_NODEJS_LOG_DIR 2>&1 &
+

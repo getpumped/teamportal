@@ -11,50 +11,8 @@
 <h1 style="font-size:26px;">Hey <%= merge_vars.MC_USER_NAME %></h1>
 <p>This is your weekly team update for <%= merge_vars.MC_TEAM_NAME %></p>
 <h2>Race Update</h2>
-<h3>Overal Leaderboard</h3>
-<table style="width:100%;" class="table table-condensed">
-<thead>
-<tr>
-<th style="width:10%;">
-#</th>
-<th style="width:45%;">
-Team</th>
-<th style="width:45%;">
-Mileage</th>
-</tr>
-</thead>
-<tbody>
-<% for(i=0;i<leaderboard.length;i++) { %>
-  <tr>
-    <td><%= i+1 %></td>
-    <td><%= leaderboard[i]._id %></td>
-    <td><%= leaderboard[i].value %>m</td>
-  </tr>
-<% } %>
-</tbody>
-</table>
-<h3>Team Leaderboard</h3>
-<table style="width:100%;" class="table table-condensed">
-<thead>
-<tr>
-<th style="width:10%;">
-#</th>
-<th style="width:45%;">
-Member</th>
-<th style="width:45%;">
-Mileage</th>
-</tr>
-</thead>
-<tbody>
-<% for(i=0;i<teamLeaderboard.length;i++) { %>
-  <tr>
-    <td><%= i+1 %></td>
-    <td><%= teamLeaderboard[i]._id %></td>
-    <td><%= teamLeaderboard[i].value %>m</td>
-  </tr>
-<% } %>
-<tbody>
-</table>
+<% include ../snippets/overall-leaderboard %>
+<% include ../snippets/team-leaderboard %>
 </td>
 </tr>
 </table>

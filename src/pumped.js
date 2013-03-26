@@ -129,116 +129,28 @@ module.exports = {
     });
   },
   getLeaderboard: function(callback) {
-    var teamlogs = mongoClient.collection('teamlogs');
-     // Map function
-    var map = function() { emit(this.teamname, this.mileage); };
-    // Reduce function
-      var reduce = function(k, v){
-        printjson(v);
-          count = 0;
-          for(i = 0; i < v.length; i++) {
-              count += parseFloat(v[i]);
-          }
-          return count;
-      }
-    
-    // Execute map reduce and return results inline
-    teamlogs.mapReduce(map, reduce, {out: {replace : 'tempCollection'}}, function(err, results) {
-      if(results) {
-        results.find().toArray(function(err, results) {
-         callback(err, results.sort(function (a, b) {
-              if (a.value < b.value) return 1;
-              if (b.value < a.value) return -1;
-              return 0;
-          })); 
-        });
-      } else {
-        callback(err, []);
-      }
+    var leaderboard = mongoClient.collection('leaderboard');
+    leaderboard.find({}, {limit: 10, sort: {value:-1}}).toArray(function(err, results) {
+      callback(err, results);
     });
   },
   getTeamLeaderboard: function(teamname, callback) {
-    var teamlogs = mongoClient.collection('teamlogs');
-     // Map function
-    var map = function() { emit(this.username, this.mileage); };
-    // Reduce function
-      var reduce = function(k, v){
-          count = 0;
-          for(i = 0; i < v.length; i++) {
-              count += parseFloat(v[i]);
-          }
-          return count;
-      }
-    
-    // Execute map reduce and return results inline
-      teamlogs.mapReduce(map, reduce, { query: { teamname: teamname }, out: {replace : 'tempCollection'}}, function(err, results) {
-      if(results) {
-        results.find().toArray(function(err, results) {
-         callback(err, results.sort(function (a, b) {
-              if (a.value < b.value) return 1;
-              if (b.value < a.value) return -1;
-              return 0;
-          })); 
-        });
-      } else {
-        callback(err, []);
-      }
+    console.log(teamname);
+    var teamleaderboard = mongoClient.collection('teamleaderboard');
+    teamleaderboard.find({ "_id.teamname": teamname }, {limit: 10, sort: {value:-1}}).toArray(function(err, results) {
+      callback(err, results);
     });
   },
   getCommittedLeaderboard: function(callback) {
-    var teamlogs = mongoClient.collection('teamlogs');
-     // Map function
-    var map = function() { emit(this.username, 1); };
-    // Reduce function
-      var reduce = function(k, v){
-          count = 0;
-          for(i = 0; i < v.length; i++) {
-              count += v[i];
-          }
-          return count;
-      }
-    
-    // Execute map reduce and return results inline
-    teamlogs.mapReduce(map, reduce, {out: {replace : 'tempCollection'}}, function(err, results) {
-      if(results) {
-        results.find().toArray(function(err, results) {
-         callback(err, results.sort(function (a, b) {
-              if (a.value < b.value) return 1;
-              if (b.value < a.value) return -1;
-              return 0;
-          })); 
-        });
-      } else {
-        callback(err, []);
-      }
+    var committedleaderboard = mongoClient.collection('committedleaderboard');
+    committedleaderboard.find({}, {limit: 10, sort: {value:-1}}).toArray(function(err, results) {
+      callback(err, results);
     });
   },
   getIronmanLeaderboard: function(callback) {
-    var teamlogs = mongoClient.collection('teamlogs');
-     // Map function
-    var map = function() { emit(this.username, this.mileage); };
-    // Reduce function
-    var reduce = function(k, v){
-      max = 0;
-      for(i = 0; i < v.length; i++) {
-        if(max < parseFloat(v[i])) max = parseFloat(v[i]);
-      }
-      return max;
-    }
-    
-    // Execute map reduce and return results inline
-    teamlogs.mapReduce(map, reduce, { out: {replace : 'tempCollection'}}, function(err, results) {
-      if(results) {
-        results.find().toArray(function(err, results) {
-         callback(err, results.sort(function (a, b) {
-              if (a.value < b.value) return 1;
-              if (b.value < a.value) return -1;
-              return 0;
-          })); 
-        });
-      } else {
-        callback(err, []);
-      }
+    var ironmanleaderboard = mongoClient.collection('ironmanleaderboard');
+    ironmanleaderboard.find({}, {limit: 10, sort: {value:-1}}).toArray(function(err, results) {
+      callback(err, results);
     });
   }
 }

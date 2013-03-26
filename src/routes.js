@@ -86,3 +86,7 @@ exports.team = function(req, res) {
 exports.admin = function(req, res) {
   private.admin(req, res);
 }
+
+exports.runjob = function(req, res) {
+  private.runjob(req, res);
+}

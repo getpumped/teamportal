@@ -61,49 +61,18 @@
       <div class="row">
         <div class="span4">
           <div class="well well-plain">
-            <h3>Race Leaderboard</h3>
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th class="span3">#</th>
-                  <th class="span7">Team</th>
-                  <th class="span2">Mileage</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% for(i=0;i<leaderboard.length;i++) { %>
-                <tr>
-                  <td><%= i+1 %></td>
-                  <td><%= leaderboard[i]._id %></td>
-                  <td><%= leaderboard[i].value %>m</td>
-                </tr>
-              <% } %>
-              </tbody>
-            </table>
+            <% include ../snippets/overall-leaderboard %>
           </div>
           <div class="well well-plain">
-            <h3>Team Leaderboard</h3>
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th class="span3">#</th>
-                  <th class="span7">Member</th>
-                  <th class="span2">Mileage</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% for(i=0;i<teamLeaderboard.length;i++) { %>
-                <tr>
-                  <td><%= i+1 %></td>
-                  <td><%= teamLeaderboard[i]._id %></td>
-                  <td><%= teamLeaderboard[i].value %>m</td>
-                </tr>
-              <% } %>
-              </tbody>
-            </table>
+            <% include ../snippets/team-leaderboard %>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12 offset4">
+      <p>Race stats last updated: <%= statrefreshdate %>
     </div>
   </div>
 </div>

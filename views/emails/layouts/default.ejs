@@ -1,0 +1,616 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<!-- Facebook sharing information tags -->
+<meta property="og:title" content="<%= title %>">
+
+<title><%= title %></title>
+
+<style type="text/css">
+#outlook a{
+padding:0;
+}
+body{
+width:100% !important;
+}
+.ReadMsgBody{
+width:100%;
+}
+.ExternalClass{
+width:100%;
+}
+body{
+-webkit-text-size-adjust:none;
+}
+body{
+margin:0;
+padding:0;
+}
+img{
+border:none;
+height:auto;
+line-height:100%;
+margin:0;
+outline:none;
+padding:0;
+text-decoration:none;
+}
+#backgroundTable{
+height:100% !important;
+margin:0;
+padding:0;
+width:100% !important;
+}
+/*
+@tab Page
+@section heading 1
+@tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
+@style heading 1
+*/
+h1,.h1{
+/*@editable*/color:#303030;
+display:block;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:30px;
+/*@editable*/font-weight:bold;
+/*@editable*/line-height:100%;
+margin-top:0;
+margin-right:0;
+margin-bottom:10px;
+margin-left:0;
+/*@editable*/text-align:left;
+}
+/*
+@tab Page
+@section heading 2
+@tip Set the styling for all second-level headings in your emails.
+@style heading 2
+*/
+h2,.h2{
+/*@editable*/color:#3F3F38;
+display:block;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:20px;
+/*@editable*/font-weight:bold;
+/*@editable*/line-height:100%;
+margin-top:0;
+margin-right:0;
+margin-bottom:10px;
+margin-left:0;
+/*@editable*/text-align:left;
+}
+/*
+@tab Page
+@section heading 3
+@tip Set the styling for all third-level headings in your emails.
+@style heading 3
+*/
+h3,.h3{
+/*@editable*/color:#468847;
+display:block;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:15px;
+/*@editable*/font-weight:bold;
+/*@editable*/line-height:100%;
+margin-top:0;
+margin-right:0;
+margin-bottom:10px;
+margin-left:0;
+/*@editable*/text-align:left;
+}
+/*
+@tab Page
+@section heading 4
+@tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
+@style heading 4
+*/
+h4,.h4{
+/*@editable*/color:#ACACAC;
+display:block;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:14px;
+/*@editable*/font-weight:bold;
+/*@editable*/line-height:100%;
+margin-top:0;
+margin-right:0;
+margin-bottom:10px;
+margin-left:0;
+/*@editable*/text-align:left;
+}
+/*
+@tab Header
+@section preheader style
+@tip Set the background color and border for your email's preheader area.
+@theme page
+*/
+#templatePreheader{
+/*@editable*/background-color:#dee0e2;
+/*@editable*/border-bottom:none;
+}
+/*
+@tab Header
+@section preheader text
+@tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
+*/
+.preheaderContent{
+/*@editable*/color:#333333;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:10px;
+/*@editable*/line-height:125%;
+/*@editable*/text-align:left;
+}
+/*
+@tab Header
+@section preheader link
+@tip Set the styling for your email's preheader links. Choose a color that helps them stand out from your text.
+*/
+.preheaderContent a:link,.preheaderContent a:visited,.preheaderContent a .yshortcuts {
+/*@editable*/color:#333333;
+/*@editable*/font-weight:normal;
+/*@editable*/text-decoration:underline;
+}
+/*
+@tab Header
+@section header style
+@tip Set the background color and borders for your email's header area.
+@theme header
+*/
+#templateHeader{
+/*@editable*/background-color:#dee0e2;
+/*@editable*/border-top:none;
+/*@editable*/border-bottom:none;
+}
+/*
+@tab Header
+@section header text
+@tip Set the styling for your email's header text. Choose a size and color that is easy to read.
+*/
+.headerContent{
+/*@editable*/color:#333333;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:13px;
+/*@editable*/font-weight:bold;
+/*@editable*/line-height:100%;
+/*@editable*/padding:0;
+/*@editable*/text-align:left;
+/*@editable*/vertical-align:middle;
+}
+/*
+@tab Header
+@section header link
+@tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+*/
+.headerContent a:link,.headerContent a:visited,.headerContent a .yshortcuts {
+/*@editable*/color:#456144;
+/*@editable*/font-weight:bold;
+/*@editable*/text-decoration:none;
+}
+/*
+@tab Header
+@section button style
+@tip Set the styling for your email's button. Choose a style that draws attention.
+*/
+#templateButton{
+/*@tab Header
+@section button style
+@tip Set the styling for your email's button. Choose a style that draws attention.*/-moz-border-radius:5px;
+-webkit-border-radius:5px;
+/*@editable*/background-color:#51a351;
+border-radius:5px;
+}
+/*
+@tab Header
+@section button style
+@tip Set the styling for your email's button. Choose a style that draws attention.
+*/
+#templateButtonContent,#templateButtonContent a:link,#templateButtonContent a:visited{
+/*@editable*/color:#ffffff;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:13px;
+/*@editable*/font-weight:bold;
+line-height:80%;
+text-align:center;
+text-decoration:none;
+}
+#headerImage{
+height:auto;
+max-width:400px !important;
+}
+/*
+@tab Body
+@section body style
+@tip Set the background color and borders for your email's body area.
+*/
+#templateBody{
+/*@editable*/background-color:#dee0e2;
+/*@editable*/border-top:none;
+/*@editable*/border-bottom:none;
+}
+/*
+@tab Body
+@section body text
+@tip Set the styling for your email's main content text. Choose a size and color that is easy to read.
+@theme main
+*/
+.bodyContent{
+/*@editable*/color:#303030;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:15px;
+/*@editable*/line-height:150%;
+/*@editable*/text-align:left;
+}
+/*
+@tab Body
+@section body link
+@tip Set the styling for your email's main content links. Choose a color that helps them stand out from your text.
+*/
+.bodyContent a:link,.bodyContent a:visited,.bodyContent a .yshortcuts {
+/*@editable*/color:#456144;
+/*@editable*/font-weight:normal;
+/*@editable*/text-decoration:underline;
+}
+.bodyContent img{
+display:inline;
+height:auto !important;
+max-width:360px !important;
+}
+/*
+@tab Sidebar
+@section sidebar text
+@tip Set the styling for your email's sidebar text. Choose a size and color that is easy to read.
+@theme main
+*/
+.sidebarContent{
+/*@editable*/color:#303030;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:13px;
+/*@editable*/line-height:150%;
+/*@editable*/text-align:left;
+}
+/*
+@tab Sidebar
+@section sidebar link
+@tip Set the styling for your email's sidebar links. Choose a color that helps them stand out from your text.
+*/
+.sidebarContent a:link,.sidebarContent a:visited,.sidebarContent a .yshortcuts {
+/*@editable*/color:#456144;
+/*@editable*/font-weight:normal;
+/*@editable*/text-decoration:underline;
+}
+.sidebarContent img{
+display:inline;
+height:auto !important;
+max-width:200px !important;
+}
+/*
+@tab Footer
+@section footer style
+@tip Set the background color and top border for your email's footer area.
+@theme page
+*/
+body,#backgroundTable{
+/*@editable*/background-color:#dee0e2;
+}
+/*
+@tab Footer
+@section footer style
+@tip Set the background color and top border for your email's footer area.
+@theme footer
+*/
+#templateFooter{
+/*@editable*/border-top:none;
+}
+/*
+@tab Footer
+@section footer text
+@tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
+@theme footer
+*/
+.footerContent{
+/*@editable*/color:#505050;
+/*@editable*/font-family:Helvetica;
+/*@editable*/font-size:11px;
+/*@editable*/line-height:125%;
+/*@editable*/text-align:left;
+}
+/*
+@tab Footer
+@section footer link
+@tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
+*/
+.footerContent a:link,.footerContent a:visited,.footerContent a .yshortcuts {
+/*@editable*/color:#505050;
+/*@editable*/font-weight:normal;
+/*@editable*/text-decoration:underline;
+}
+.footerContent img{
+display:inline;
+}
+#monkeyRewards img{
+max-width:190px;
+}
+.headerContent a:link,.headerContent a:visited,.headerContent a .yshortcuts{
+color:#333333;
+}
+.sidebarContent a:link,.sidebarContent a:visited,.sidebarContent a .yshortcuts{
+color:#468847;
+}
+.bodyContent a:link,.bodyContent a:visited,.bodyContent a .yshortcuts{
+color:#468847;
+}
+.table {
+width: 100%;
+margin-bottom: 20px;
+}
+.table th,
+.table td {
+padding: 8px;
+line-height: 20px;
+text-align: left;
+vertical-align: top;
+border-top: 1px solid #dddddd;
+color: #333333;
+}
+.table th {
+font-weight: bold;
+}
+.table thead th {
+vertical-align: bottom;
+}
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+border-top: 0;
+}
+.table tbody + tbody {
+border-top: 2px solid #dddddd;
+}
+.table .table {
+background-color: #ffffff;
+}
+.table-condensed th,
+.table-condensed td {
+padding: 4px 5px;
+}
+.table-bordered {
+border: 1px solid #dddddd;
+border-collapse: separate;
+*border-collapse: collapse;
+border-left: 0;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+.table-bordered th,
+.table-bordered td {
+border-left: 1px solid #dddddd;
+}
+.table-bordered caption + thead tr:first-child th,
+.table-bordered caption + tbody tr:first-child th,
+.table-bordered caption + tbody tr:first-child td,
+.table-bordered colgroup + thead tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child td,
+.table-bordered thead:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child td {
+border-top: 0;
+}
+.table-bordered thead:first-child tr:first-child > th:first-child,
+.table-bordered tbody:first-child tr:first-child > td:first-child,
+.table-bordered tbody:first-child tr:first-child > th:first-child {
+-webkit-border-top-left-radius: 4px;
+-moz-border-radius-topleft: 4px;
+border-top-left-radius: 4px;
+}
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered tbody:first-child tr:first-child > td:last-child,
+.table-bordered tbody:first-child tr:first-child > th:last-child {
+-webkit-border-top-right-radius: 4px;
+-moz-border-radius-topright: 4px;
+border-top-right-radius: 4px;
+}
+.table-bordered thead:last-child tr:last-child > th:first-child,
+.table-bordered tbody:last-child tr:last-child > td:first-child,
+.table-bordered tbody:last-child tr:last-child > th:first-child,
+.table-bordered tfoot:last-child tr:last-child > td:first-child,
+.table-bordered tfoot:last-child tr:last-child > th:first-child {
+-webkit-border-bottom-left-radius: 4px;
+-moz-border-radius-bottomleft: 4px;
+border-bottom-left-radius: 4px;
+}
+.table-bordered thead:last-child tr:last-child > th:last-child,
+.table-bordered tbody:last-child tr:last-child > td:last-child,
+.table-bordered tbody:last-child tr:last-child > th:last-child,
+.table-bordered tfoot:last-child tr:last-child > td:last-child,
+.table-bordered tfoot:last-child tr:last-child > th:last-child {
+-webkit-border-bottom-right-radius: 4px;
+-moz-border-radius-bottomright: 4px;
+border-bottom-right-radius: 4px;
+}
+.table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+-webkit-border-bottom-left-radius: 0;
+-moz-border-radius-bottomleft: 0;
+border-bottom-left-radius: 0;
+}
+.table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+-webkit-border-bottom-right-radius: 0;
+-moz-border-radius-bottomright: 0;
+border-bottom-right-radius: 0;
+}
+.table-bordered caption + thead tr:first-child th:first-child,
+.table-bordered caption + tbody tr:first-child td:first-child,
+.table-bordered colgroup + thead tr:first-child th:first-child,
+.table-bordered colgroup + tbody tr:first-child td:first-child {
+-webkit-border-top-left-radius: 4px;
+-moz-border-radius-topleft: 4px;
+border-top-left-radius: 4px;
+}
+.table-bordered caption + thead tr:first-child th:last-child,
+.table-bordered caption + tbody tr:first-child td:last-child,
+.table-bordered colgroup + thead tr:first-child th:last-child,
+.table-bordered colgroup + tbody tr:first-child td:last-child {
+-webkit-border-top-right-radius: 4px;
+-moz-border-radius-topright: 4px;
+border-top-right-radius: 4px;
+}
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+background-color: #f9f9f9;
+}
+</style></head>
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+<center>
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+<tbody><tr>
+<td align="center" valign="top">
+<!-- // Begin Template Preheader \\ -->
+<table border="0" cellpadding="10" cellspacing="0" width="100%" id="templatePreheader">
+<tbody><tr>
+<td align="center" valign="top" style="padding-bottom: 0px;">
+<table cellpadding="0" cellspacing="0" width="600" style="background-color:#f4f4f4;margin-top: 20px;border-top:1px solid #bbbbbb; border-left:1px solid #bbbbbb;border-right:1px solid #bbbbbb">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" style="padding: 10px 5px;">
+<tbody><tr>
+<td valign="top" class="preheaderContent" style="padding-right:20px" mc:edit="preheader_content">
+An epic virtual adventure - the ultimate endurance challenge that doesn’t need a backpack Save Children's lives in a virtual race half way around the world!
+</td>
+<!-- *|IFNOT:ARCHIVE_PAGE|* -->
+<td valign="top" width="180" class="preheaderContent" mc:edit="preheader_link">
+Is this email not displaying correctly?<br><a href="*%7CARCHIVE%7C*" target="_blank">View it in your browser</a>.
+</td>
+<!-- *|END:IF|* -->
+</tr>
+</tbody></table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody></table>
+<!-- // End Template Preheader \\ -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainer" style="background-color: #dee0e2;">
+<tbody><tr>
+<td align="center" valign="top" id="templateHeader" style="">
+<!-- // Begin Template Header \\ -->
+<table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #f4f4f4;padding:20px 20px 20px 0px;border-left:1px solid #bbbbbb;border-right:1px solid #bbbbbb">
+<tbody><tr>
+<td width="400" class="headerContent">
+<img src="http://gallery.mailchimp.com/3e9ced8ead378e6b087ce80d9/images/logo_trans.png" style="max-width:400px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowtext="">
+</td>
+<td align="right" valign="middle" width="200" style="padding-left:20px;">
+<table border="0" cellpadding="15" cellspacing="0" id="templateButton">
+<tbody><tr>
+<td align="center" valign="middle" id="templateButtonContent" style="padding-right:20px; padding-left:20px;" mc:edit="app_button"><a href="http://team-pumped.rhcloud.com/" target="_blank">Sign In &raquo;</a> </td>
+</tr>
+</tbody></table>                                                        
+</td>
+</tr>
+</tbody></table>
+
+<!-- // End Template Header \\ -->
+</td>
+</tr>
+<tr>
+<td align="center" valign="top">
+<%- body -%>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td align="center" valign="top" id="templateFooter" style="">
+<!-- // Begin Template Footer \\ -->
+<table border="0" cellpadding="0" cellspacing="0" width="600" style="
+border-left: 1px solid #bbbbbb;
+border-right: 1px solid #bbbbbb; border-bottom: 1px solid #bbbbbb;
+background-color: #f4f4f4; padding:20px;margin-bottom: 20px;">
+<tbody>
+<tr>
+<td colspan="2" valign="top" align="center" style="padding:15px 0px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%"  style="border-top:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;">
+<tr>
+<td valign="top" align="center">
+<table border="0" cellpadding="0" cellspacing="0" width="80%">
+<tbody><tr>
+<td valign="top" style="width:33%;padding-top:10px; padding-bottom:10px;" mc:hideable="">
+<table align="left" border="0" cellpadding="0" cellspacing="0" width="" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<tbody><tr>
+<td align="center" valign="middle" width="18" class="mcnShareIconContent" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<a href="http://www.facebook.com/sharer/sharer.php?u=<%= merge_vars.MC_TEAM_LINK %>&amp;t=<%= merge_vars.MC_SUBJECT %>" target="_blank" style="word-wrap: break-word !important;"><img src="http://cdn-images.mailchimp.com/icons/social-block/color-facebook-128.png" style="display: block;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;" height="18" width="18" class=""></a>
+</td>
+<td align="left" valign="middle" class="mcnShareTextContent" style="padding-left: 5px;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<a href="http://www.facebook.com/sharer/sharer.php?u=<%= merge_vars.MC_TEAM_LINK %>&amp;t=<%= merge_vars.MC_SUBJECT %>" target="" style="color: #505050;font-size: 12px;font-family: Arial;font-weight: normal;line-height: 100%;text-align: center;text-decoration: none;word-wrap: break-word !important;">Share on Facebook</a>
+</td>
+</tr>
+</tbody></table>
+</td>
+<td valign="top" style="width:33%;padding-top:10px; padding-bottom:10px;" mc:hideable="">
+<table align="left" border="0" cellpadding="0" cellspacing="0" width="" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<tbody><tr>
+<td align="center" valign="middle" width="18" class="mcnShareIconContent" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<a href="http://twitter.com/?status=<%= merge_vars.MC_SUBJECT %>: <%= merge_vars.MC_TEAM_LINK %>" target="_blank" style="word-wrap: break-word !important;"><img src="http://cdn-images.mailchimp.com/icons/social-block/color-twitter-128.png" style="display: block;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;" height="18" width="18" class=""></a>
+</td>
+<td align="left" valign="middle" class="mcnShareTextContent" style="padding-left: 5px;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<a href="http://twitter.com/?status=<%= merge_vars.MC_SUBJECT %>: <%= merge_vars.MC_TEAM_LINK %>" target="" style="color: #505050;font-size: 12px;font-family: Arial;font-weight: normal;line-height: 100%;text-align: center;text-decoration: none;word-wrap: break-word !important;">Share on Twitter</a>
+</td>
+</tr>
+</tbody></table>
+</td>
+<td valign="top" style="width:33%;padding-top:10px; padding-bottom:10px;" mc:hideable="">
+<table align="left" border="0" cellpadding="0" cellspacing="0" width="" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<tbody><tr>
+<td align="center" valign="middle" width="18" class="mcnShareIconContent" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<a href="*|FORWARD|*" target="_blank" style="word-wrap: break-word !important;"><img src="http://cdn-images.mailchimp.com/icons/social-block/color-forwardtofriend-128.png" style="display: block;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;" height="18" width="18" class=""></a>
+</td>
+<td align="left" valign="middle" class="mcnShareTextContent" style="padding-left: 5px;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<a href="*|FORWARD|*" target="" style="color: #505050;font-size: 12px;font-family: Arial;font-weight: normal;line-height: 100%;text-align: center;text-decoration: none;word-wrap: break-word !important;">Forward to Friend</a>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td valign="top" class="footerContent" style="padding-right:20px;" mc:edit="footer">
+<em>Copyright &copy; *|CURRENT_YEAR|* Pumped, All rights reserved.</em>
+<br>
+You are receiving this email because you are signed up to the Pumped Team Portal
+<br>
+</td>
+<td valign="top" width="200" id="monkeyRewards" class="footerContent" mc:edit="monkeyrewards">
+<a href="http://eepurl.com/w9sQj">
+<img src="https://d2q0qd5iz04n9u.cloudfront.net/_ssl/proxy.php/http/cdn-images.mailchimp.com/monkey_rewards/MC_MonkeyReward_15.png" />
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="middle" class="footerContent" style="padding-top:20px;" mc:edit="utility">
+<a href="<%= merge_vars.unsubscribeUrl %>">unsubscribe from this list</a> | <a href="<%= merge_vars.profileUrl %>">update subscription preferences</a>&nbsp;
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<!-- // End Template Footer \\ -->
+</td>
+</tr>
+</tbody></table>
+</center>
+
+</body></html>

@@ -13,7 +13,9 @@ var config = require('./config')
   , MongoStore = require('connect-mongo')(express)
   , flash = require('connect-flash')
   , mailer = require('./src/mailer')
-  , emailTests = require('./src/email_tests.js');
+  , emailTests = require('./src/email_tests.js')
+  , fs = require('fs')
+  , dateFormat = require('dateformat');
 
 app = express();
 new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(function (err, client) {
@@ -65,6 +67,7 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
   app.get('/stats-emb', routes.statsEmb);
   app.get('/team/:id', routes.team);
   app.get('/private/admin', routes.admin);
+  app.get('/private/admin/job/:job', routes.runjob);
     
   /* email test rendering routes */
   app.get('/email-tests/team-update', emailTests.teamUpdate)
@@ -73,6 +76,7 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
   //app.get('/users', user.list);
   
   app.locals.portalUrl = config.appProtocol + '://' + config.appDNS + '/'
+  getStatRefreshDate();
   http.createServer(app).listen(config.port, config.ipaddr, function() {
     console.log("Express server listening on port " + config.port);
     });
@@ -87,3 +91,23 @@ authoriseRoute = function (req, res, callback) {
 	}
 	else callback();
 }
+
+function getStatRefreshDate() {
+  fs.exists(config.statDateFile, function (exists) {
+    if(exists) {
+      fs.lstat(config.statDateFile, function(err, stats) {
+        if(err) app.locals.statrefreshdate = 'never';
+        else app.locals.statrefreshdate = dateFormat(stats.mtime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+      })
+    } else {
+      //fs.writeFileSync(config.statDateFile, new Date());
+      app.locals.statrefreshdate = 'never';
+    }
+  });
+  
+}
+
+fs.watchFile(config.statDateFile, { persistent: true, interval: 5007 }, function (curr, prev) {
+  console.log('statdatefile changed');
+  app.locals.statrefreshdate = dateFormat(curr.mtime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+});

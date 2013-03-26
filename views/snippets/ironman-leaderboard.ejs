@@ -1,0 +1,19 @@
+<h3>Ironman Leaderboard</h3>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Member</th>
+      <th>Mileage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(i=0;i<ironmanLeaderboard.length;i++) { %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= ironmanLeaderboard[i]._id.username %></td>
+      <td><%= ironmanLeaderboard[i].value %>m</td>
+    </tr>
+  <% } %>
+  </tbody>
+</table>

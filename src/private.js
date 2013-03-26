@@ -4,7 +4,8 @@ var pumped = require('./pumped'),
     dateFormat = require('dateformat'),
     mongodb = require('mongodb'),
     BSON = mongodb.BSONPure,
-    mailer = require('./mailer');
+    mailer = require('./mailer'),
+    jobs = require('./jobs');
 
 module.exports = {
   index: function(req, res) {
@@ -183,6 +184,13 @@ module.exports = {
     }
   },
   admin: function(req, res) {
-    res.render('./private/account', { title: 'Admin Area', errors: req.flash('errors'), messages: req.flash('messages') });
+    res.render('./private/admin', { title: 'Admin Area', errors: req.flash('errors'), messages: req.flash('messages') });
+  },
+  runjob: function(req, res) {
+    jobs.buildStats(function(err) {
+      if(err) req.flash('errors', err);
+      else req.flash('messages','Leaderboards built successfully');
+      res.redirect('/private/admin');
+    });
   }
 }

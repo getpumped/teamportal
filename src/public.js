@@ -175,7 +175,7 @@ module.exports = {
         req.flash('errors', 'You are not registered to use this application'); //Need to output these errors to the screen for the user
         return res.redirect('/login');
       } else {
-        req.flash('messages','You\'ve successfully signed-in.');
+        req.flash('messages','Signed in successfully.');
         req.session.user = user;
         if(user.teamname === null) {
           res.redirect('/private/choose-team');
