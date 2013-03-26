@@ -15,7 +15,7 @@ var config = require('./config')
   , mailer = require('./src/mailer')
   , emailTests = require('./src/email_tests.js')
   , fs = require('fs')
-  , exists = fs.exists || require('path').exists;
+  , exists = fs.exists || require('path').exists
   , dateFormat = require('dateformat');
 
 app = express();
