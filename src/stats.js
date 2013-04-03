@@ -12,10 +12,14 @@ module.exports = {
           }
           return count;
       }
-
+    var leaderboard = mongoClient.collection('leaderboard');
     teamlogs.mapReduce(map, reduce, {out: {replace : 'tempCollection'}}, function(err, collection) {
-      collection.rename('leaderboard', {dropTarget:true}, function(err, reply) {
-        callback(err); 
+      collection.find().each(function(err, item) {
+        if(item != null) {
+          leaderboard.update({ _id: item._id }, item, { upsert:true }, function(err, result) {
+          
+          });
+        } else callback(err);
       });
     });
   },
@@ -31,10 +35,14 @@ module.exports = {
       }
       return count;
     }
-    
+    var teamleaderboard = mongoClient.collection('teamleaderboard');
     teamlogs.mapReduce(map, reduce, { out: {replace : 'tempCollection'}}, function(err, collection) {
-      collection.rename('teamleaderboard', {dropTarget:true}, function(err, reply) {
-        callback(err); 
+      collection.find().each(function(err, item) {
+        if(item != null) {
+          teamleaderboard.update({ _id: item._id }, item, { upsert:true }, function(err, result) {
+          
+          });
+        } else callback(err);
       });
     });
   },
@@ -51,10 +59,14 @@ module.exports = {
           return count;
       }
     
-    // Execute map reduce and return results inline
+    var committedleaderboard = mongoClient.collection('committedleaderboard');
     teamlogs.mapReduce(map, reduce, {out: {replace : 'tempCollection'}}, function(err, collection) {
-      collection.rename('committedleaderboard', {dropTarget:true}, function(err, reply) {
-        callback(err); 
+      collection.find().each(function(err, item) {
+        if(item != null) {
+          committedleaderboard.update({ _id: item._id }, item, { upsert:true }, function(err, result) {
+          
+          });
+        } else callback(err);
       });
     });
   },
@@ -71,10 +83,14 @@ module.exports = {
       return max;
     }
     
-    // Execute map reduce and return results inline
+    var ironmanleaderboard = mongoClient.collection('ironmanleaderboard');
     teamlogs.mapReduce(map, reduce, { out: {replace : 'tempCollection'}}, function(err, collection) {
-      collection.rename('ironmanleaderboard', {dropTarget:true}, function(err, reply) {
-        callback(err); 
+      collection.find().each(function(err, item) {
+        if(item != null) {
+          ironmanleaderboard.update({ _id: item._id }, item, { upsert:true }, function(err, result) {
+          
+          });
+        } else callback(err);
       });
     });
   }

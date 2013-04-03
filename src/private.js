@@ -5,7 +5,8 @@ var pumped = require('./pumped'),
     mongodb = require('mongodb'),
     BSON = mongodb.BSONPure,
     mailer = require('./mailer'),
-    jobs = require('./jobs');
+    jobs = require('./jobs'),
+    config = require('../config');
 
 module.exports = {
   index: function(req, res) {
@@ -65,7 +66,7 @@ module.exports = {
       req.flash('errors', e.message); //Need to output these errors to the screen for the user
       return res.redirect('/private');
     }
-    pumped.saveLog({ date: date, logtype: req.body.logtype, mileage: parseFloat(req.body.mileage),
+    pumped.saveLog({ date: date, logtype: req.body.logtype, mileage: parseFloat(req.body.mileage*config.conversionFactor[req.body.logtypeunit]).toFixed(2),
                     teamname: req.session.user.teamname, username: req.session.user.username },
                   function(err, result) {
                     if(err) {
@@ -77,12 +78,24 @@ module.exports = {
                     }
                   });
   },
+  removeLog: function(req, res) {
+    pumped.removeLog({ _id: new BSON.ObjectID(req.params.id) }, function(err, result) {
+                    if(err) {
+                      req.flash('errors', 'There was a problem removing the activity log');
+                      res.redirect('/private');
+                    } else {
+                      req.flash('messages', 'Your activity was removed, race stats will be updated shortly'); 
+                      res.redirect('/private');
+                    }
+                  });
+  },
   accountUpdate: function(req, res) {
     try {
       check(req.body.plannedmileage, 'Invalid value entered for planned mileage').isInt(); 
       check(req.body.fundraisingtarget, 'Invalid value entered for fundraising target').isDecimal(); 
       check(req.body.fundraisingtotal, 'Invalid value entered for fundraising total').isDecimal(); 
       check(req.body.teamfundraisingpage, 'Invalid value entered for fundraising total').isUrl(); 
+      check(req.body.logtypeunit, 'Invalid value entered for log unit').isIn(["mi","km"]); 
     } catch (e) {
       req.flash('errors', e.message); //Need to output these errors to the screen for the user
       return res.redirect('/private/account');
@@ -91,7 +104,8 @@ module.exports = {
                        fundraisingtarget: parseFloat(req.body.fundraisingtarget),
                        fundraisingtotal: parseFloat(req.body.fundraisingtotal),
                        newsletters: sanitize(req.body.newsletters).toBooleanStrict(),
-                       teamupdates: sanitize(req.body.teamupdates).toBooleanStrict() }, function (err, user) {
+                       teamupdates: sanitize(req.body.teamupdates).toBooleanStrict(),
+                       logtypeunit: req.body.logtypeunit}, function (err, user) {
                                 if(err) req.flash('messages', 'There was an error updating your account');
                                 else {
                                   user.isAuthenticated = true;

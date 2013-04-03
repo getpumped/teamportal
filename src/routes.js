@@ -29,6 +29,10 @@ exports.addLog = function(req, res) {
   private.addLog(req, res);
 };
 
+exports.removeLog = function(req, res) {
+  private.removeLog(req, res);
+};
+
 exports.createAccount = function(req, res) {
   public.createAccount(req, res);
 };

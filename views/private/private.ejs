@@ -1,5 +1,18 @@
 <% layout('../layouts/default') %>
 <% var date = new Date(); %>
+<div id="delete-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+  <div class="modal-header">
+    <a type="button" class="close" data-dismiss="modal" aria-hidden="true">×</a>
+    <h2 id="deleteLabel" class="form-signin-heading">Confirm Delete</h2>
+  </div>
+  <div class="modal-body">
+    <p>Please confirm that you wish to delete this activity, this action cannot be undone.</p>
+  </div>
+  <div class="modal-footer">
+    <a class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>
+    <a class="btn btn-primary delete-btn" type="submit">Delete</a>
+  </div>
+</div>
 <div class="container">
   <div class="row">
     <div class="span4">
@@ -10,9 +23,10 @@
           <input type="text" value="<%= defaultDate %>" data-date-format="dd/mm/yyyy" class="datepicker" name="date" required>
           <p class="help-block"></p>
           <label>Activity</label>
-          <select id="logtype" name="logtype" type="text" class="input-large">
+          <input id="logtype" name="logtype" autocomplete="off" type="text" data-provide="typeahead" data-source='["Cycle","Gym Workout","Netball","Pram March","Run","Skate","Ski","Spin","Swim"]'>
+          <!--<select id="logtype" name="logtype" type="text" class="input-large">
             <option value="Cycle">Cycle</option>
-            <option value="Gym">Gym workout</option>
+            <option value="Gym Workout">Gym workout</option>
             <option value="Netball">Netball</option>
             <option value="Pram March">Pram March</option>
             <option value="Run">Run</option>
@@ -20,10 +34,14 @@
             <option value="Ski">Ski</option>
             <option value="Spin">Spin</option>
             <option value="Swim">Swim</option>
-          </select>
+          </select>-->
           <label>Mileage</label>
           <input name="mileage" class="input-small" type="text" pattern="^([0-9]|\d{2,3}|\d{3}|(,\d{3}))*(\.\d{1,2})?$" required
           min="0.1" data-validation-min-message="Cannot enter 0 mileage">
+          <select id="logtypeunit" name="logtypeunit" class="input-mini">
+            <option value="mi"<%= user.logtypeunit == 'mi' ? ' selected' : '' %>>mi</option>
+            <option value="km"<%= user.logtypeunit == 'km' ? ' selected' : '' %>>km</option>
+          </select>
           <div class="form-actions">
             <button class="btn btn-primary" type="submit">Add Log</button>
           </div>
@@ -35,12 +53,13 @@
         <div class="span4">
           <div class="well well-plain">
             <h3>Activity Log</h3>
-            <table class="table table-condensed">
+            <table class="table table-condensed" id="activity-log">
               <thead>
                 <tr>
                   <th class="span3">Date</th>
-                  <th class="span7">Activity</th>
-                  <th class="span2">Mileage</th>
+                  <th class="span6">Activity</th>
+                  <th class="span3">Mileage</th>
+                  <th class="span1"></th>
                 </tr>
               </thead>
               <tbody>
@@ -48,7 +67,11 @@
                 <tr>
                   <td><%= dateFormater(logs[i].date, "dd/mm/yyyy") %></td>
                   <td><%= logs[i].logtype %></td>
-                  <td><%= logs[i].mileage %>m</td>
+                  <td><%= logs[i].mileage %> mi
+                  </td>
+                  <td>
+                  <a href="javascript:removeLog('<%= logs[i]._id %>');" class="log-delete pull-right"><i class="icon-remove"></i></a>
+                  </td>
                 </tr>
               <% } %>
               </tbody>
@@ -86,4 +109,11 @@
   }}).on('changeDate', function(ev){
     $(ev.target).datepicker('hide');
   });
- </script>
+
+  function removeLog(id) {
+    $('#delete-modal').data('id', id).modal('show').on('shown', function() {
+      var removeBtn = $(this).find('.delete-btn');
+      removeBtn.attr('href', '/private/remove-log/' + id);
+    });
+  }
+</script>

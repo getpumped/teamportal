@@ -25,6 +25,15 @@
               </div>
             </div>
             <div class="control-group">
+              <label class="control-label" for="plannedmileage">Log Unit</label>
+              <div class="controls">
+                <select id="logtypeunit" name="logtypeunit" class="input-mini">
+                 <option value="mi"<%= user.logtypeunit == 'mi' ? ' selected' : '' %>>mi</option>
+                 <option value="km"<%= user.logtypeunit == 'km' ? ' selected' : '' %>>km</option>
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label" for="plannedmileage">Planned Mileage</label>
               <div class="controls">
                 <input type="text" placeholder="0" class="input-small" id="plannedmileage" name="plannedmileage" value="<%= user.plannedmileage %>" /> 

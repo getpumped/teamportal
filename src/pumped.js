@@ -116,6 +116,12 @@ module.exports = {
         callback(err, log);
     });
   },
+  removeLog: function(log, callback) {
+    var teamlogs = mongoClient.collection('teamlogs');
+    teamlogs.remove(log, function (err) {
+        callback(err);
+    });
+  },
   getUserLogs: function(username, options, callback) {
     var teamlogs = mongoClient.collection('teamlogs');
     teamlogs.find({ username: username }, options).toArray(function (err, logs) {

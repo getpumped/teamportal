@@ -109,7 +109,7 @@ function createMarker(point, html, position, teamname) {
 
 function loadMarkers() {
     for (var i = 0; i < teams.length; i++) {
-        var infoWindowContent = '#' + i + ' : ' + teams[i]._id.teamname;
+        var infoWindowContent = '#' + (i+1) + ' : ' + teams[i]._id.teamname;
         var landmark = createMarker(polyline.GetPointAtDistance(teams[i].value * 1600), infoWindowContent, i+1, teams[i].teamname);
     }
 }
