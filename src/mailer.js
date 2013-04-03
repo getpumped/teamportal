@@ -1,4 +1,3 @@
-
 var MailChimpAPI = require('mailchimp').MailChimpAPI,
     MandrillAPI = require('mailchimp').MandrillAPI,
     config = require('../config'),
