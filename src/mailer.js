@@ -32,7 +32,7 @@ module.exports = {
   subscribeUser: function(user, callback) {
     if(config.enableMailer) {
       mailChimp.listSubscribe({ id:'16aa587a7f', email_address:user.email
-                               , merge_vars:{"FNAME":user.username}, email_type:'html'
+                               , merge_vars:{"FNAME":user.forename, "LNAME":user.surname}, email_type:'html'
                                , double_optin:false, send_welcome: false, update_existing: true }, function(error, data) {
                                  if (error) {
                                    console.log(error.message)
