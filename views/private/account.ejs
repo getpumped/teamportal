@@ -7,6 +7,9 @@
         fundraising target/progress as well as your email preferences.</p>
       <p>Its not currently possible to change your username or email address within
         the system, if you need to please send an email request to support@pumped.org.uk.</p>
+        <% if(user.isadmin) { %>
+          <a href="/private/export" class="btn">Export Activity Data</a>
+        <% } %>
     </div>
     <div class="span8">
       <div class="row">
@@ -69,7 +72,6 @@
             </div>
             <% } %>
             <div class="form-actions">
-              <input type="reset" class="btn" value="Reset">
               <button type="submit" class="btn btn-primary">Update</button>
             </div>
           </form>

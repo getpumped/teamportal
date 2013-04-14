@@ -6,7 +6,11 @@ var pumped = require('./pumped'),
     BSON = mongodb.BSONPure,
     mailer = require('./mailer'),
     jobs = require('./jobs'),
-    config = require('../config');
+    config = require('../config'),
+    fs = require('fs'),
+    path = require('path'),
+    exists = fs.exists || require('path').exists
+    json2csv = require('json2csv');
 
 module.exports = {
   index: function(req, res) {
@@ -94,7 +98,8 @@ module.exports = {
       check(req.body.plannedmileage, 'Invalid value entered for planned mileage').isInt(); 
       check(req.body.fundraisingtarget, 'Invalid value entered for fundraising target').isDecimal(); 
       //check(req.body.fundraisingtotal, 'Invalid value entered for fundraising total').isDecimal(); 
-      check(req.body.teamfundraisingpage, 'Invalid value entered for fundraising total').isUrl(); 
+      if(req.body.teamfundraisingpage != '')
+        check(req.body.teamfundraisingpage, 'Invalid value entered for fundraising total').isUrl(); 
       check(req.body.logtypeunit, 'Invalid value entered for log unit').isIn(["mi","km"]); 
     } catch (e) {
       req.flash('errors', e.message); //Need to output these errors to the screen for the user
@@ -205,6 +210,23 @@ module.exports = {
       if(err) req.flash('errors', err);
       else req.flash('messages','Leaderboards built successfully');
       res.redirect('/private/admin');
+    });
+  },
+  exportData: function(req, res) {
+    exists(config.appRoot + '/pumped_extract.csv', function(doesExist) {
+      if(doesExist)
+        fs.unlinkSync(config.appRoot + '/pumped_extract.csv');
+      
+      var teamlogs = mongoClient.collection('teamlogs');
+      teamlogs.find().toArray(function (err, logs) {
+        json2csv({data: logs, fields: ['date', 'username', 'logtype', 'mileage', 'teamname']}, function(err, csv) {
+          if (err) res.send(err);
+          fs.appendFileSync(path.normalize(config.appRoot + '/pumped_extract.csv'), csv);
+          res.setHeader('Content-disposition', 'attachment; filename=pumped_extract.csv');
+          res.setHeader('Content-type', 'text/csv');
+          res.send(fs.readFileSync(config.appRoot + '/pumped_extract.csv'));
+        });
+      });
     });
   }
 }

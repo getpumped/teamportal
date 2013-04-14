@@ -94,3 +94,7 @@ exports.admin = function(req, res) {
 exports.runjob = function(req, res) {
   private.runjob(req, res);
 }
+
+exports.exportData = function(req, res) {
+  private.exportData(req, res);
+}

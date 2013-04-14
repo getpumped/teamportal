@@ -73,6 +73,7 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
     app.get('/team/:id', routes.team);
     app.get('/private/admin', routes.admin);
     app.get('/private/admin/job/:job', routes.runjob);
+    app.get('/private/export', routes.exportData);
     
     /* email test rendering routes */
     app.get('/email-tests/team-update', emailTests.teamUpdate)
