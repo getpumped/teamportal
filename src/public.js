@@ -35,7 +35,7 @@ module.exports = {
     pumped.getTeam(new BSON.ObjectID(req.params.id), function(err, team) {
       if(err) {
         req.flash('errors', err);
-        return res.render('team', { team: team, title: '', logs: logs
+        return res.render('team', { team: { teamname: 'Unknown' }, title: '', logs: []
                 , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
                 errors: req.flash('errors'), messages: req.flash('messages'),
                 leaderboard: [], teamLeaderboard: []});

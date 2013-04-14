@@ -101,6 +101,7 @@ module.exports = {
   getTeam: function(teamid, callback) {
     var teams = mongoClient.collection('teams');
     teams.findOne({ _id: teamid }, function(err, team) {
+      console.log('team = %j', team);
       if(err) {
         callback('The was an error retrieving team details, please try again.', null);
       } else if(team === null) {
