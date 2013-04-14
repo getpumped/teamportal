@@ -229,6 +229,7 @@ module.exports = {
           });
         } else {
           req.flash('errors', "There were no records to export");
+          res.redirect('/private/account')
         }
       });
     });
