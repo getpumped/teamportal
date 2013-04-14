@@ -221,15 +221,19 @@ module.exports = {
       teamlogs.find().toArray(function (err, logs) {
         if(logs && logs.length > 0) {
           json2csv({data: logs, fields: ['date', 'username', 'logtype', 'mileage', 'teamname']}, function(err, csv) {
-            if (err) req.flash('errors', "There was a problem with the export");
-            fs.appendFileSync(path.normalize(config.appRoot + '/pumped_extract.csv'), csv);
-            res.setHeader('Content-disposition', 'attachment; filename=pumped_extract.csv');
-            res.setHeader('Content-type', 'text/csv');
-            res.send(fs.readFileSync(config.appRoot + '/pumped_extract.csv'));
+            if (err) {
+              req.flash('errors', "There was a problem with the export");
+              res.redirect('/private/account');
+            } else {
+              fs.appendFileSync(path.normalize(config.appRoot + '/pumped_extract.csv'), csv);
+              res.setHeader('Content-disposition', 'attachment; filename=pumped_extract.csv');
+              res.setHeader('Content-type', 'text/csv');
+              res.send(fs.readFileSync(config.appRoot + '/pumped_extract.csv'));
+            }
           });
         } else {
           req.flash('errors', "There were no records to export");
-          res.redirect('/private/account')
+          res.redirect('/private/account');
         }
       });
     });
