@@ -31,7 +31,7 @@ module.exports = {
             console.log('Build leaderboards completed');
           }
           job.lastrundate = new Date();
-          job.nextrundate = addMinutes(job.nextrundate, config.jobSchedules.buildstats);
+          job.nextrundate = addMinutes(job.lastrundate, config.jobSchedules.buildstats);
           job.status = 'idle';
           joblogs.save(job, function() {
             if(err) {

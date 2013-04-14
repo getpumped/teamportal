@@ -11,7 +11,8 @@
   <% for(i=0;i<leaderboard.length;i++) { %>
     <tr>
       <td><%= i+1 %></td>
-      <td><%= leaderboard[i]._id.teamname %></td>
+      <td><a href="/team/<%= leaderboard[i]._id.teamid %>">
+        <%= leaderboard[i]._id.teamname %></a></td>
       <td><%= leaderboard[i].value %> mi</td>
     </tr>
   <% } %>

@@ -93,7 +93,7 @@ module.exports = {
     try {
       check(req.body.plannedmileage, 'Invalid value entered for planned mileage').isInt(); 
       check(req.body.fundraisingtarget, 'Invalid value entered for fundraising target').isDecimal(); 
-      check(req.body.fundraisingtotal, 'Invalid value entered for fundraising total').isDecimal(); 
+      //check(req.body.fundraisingtotal, 'Invalid value entered for fundraising total').isDecimal(); 
       check(req.body.teamfundraisingpage, 'Invalid value entered for fundraising total').isUrl(); 
       check(req.body.logtypeunit, 'Invalid value entered for log unit').isIn(["mi","km"]); 
     } catch (e) {
@@ -102,7 +102,7 @@ module.exports = {
     }
     pumped.updateUser(req.session.user._id, { plannedmileage: parseInt(req.body.plannedmileage),
                        fundraisingtarget: parseFloat(req.body.fundraisingtarget),
-                       fundraisingtotal: parseFloat(req.body.fundraisingtotal),
+                       //fundraisingtotal: parseFloat(req.body.fundraisingtotal),
                        newsletters: sanitize(req.body.newsletters).toBooleanStrict(),
                        teamupdates: sanitize(req.body.teamupdates).toBooleanStrict(),
                        logtypeunit: req.body.logtypeunit}, function (err, user) {

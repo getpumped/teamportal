@@ -112,6 +112,7 @@ module.exports = {
   },
   createAccount: function(req, res) {
     try {
+      check(req.body.forename,'Must provide a value for forename').notEmpty();
       check(req.body.username, 'Invalid username entered').is(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/)
       check(req.body.email, 'Invalid email entered').is(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     } catch (e) {
@@ -128,8 +129,9 @@ module.exports = {
              req.flash('errors', err);
              res.redirect('/register');
            } else {
-             pumped.saveUser({ username: req.body.username, email: req.body.email, 
-                              teamname: null, plannedmileage: null, newsletters: true, teamupdates: true }, function (err, user) {
+             pumped.saveUser({ username: req.body.username, email: req.body.email, forename: req.body.forename
+                              , surname: req.body.surname, teamname: null, plannedmileage: null, 
+                              newsletters: true, teamupdates: true }, function (err, user) {
                                 mailer.subscribeUser(user, function(err) {
                                   if(err) {
                                     pumped.deleteUser(user._id, function(err, noRemoved) {
