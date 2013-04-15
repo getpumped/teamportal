@@ -38,7 +38,6 @@ module.exports = {
               console.log('Error setting next run date for buildstats');
               console.log(err);
             }
-            fs.writeFileSync(config.statDateFile, new Date());
             console.log(new Date());
             console.log('*********************');
             callback();

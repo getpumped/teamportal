@@ -44,10 +44,9 @@ new mongodb.Db('pumped', config.dbconnection, { w: 1, keepAlive: 1 }).open(funct
       app.use(express.static(path.join(__dirname, 'public')));
     });
     
-    app.configure('development', function(){
-      app.use(express.errorHandler());
-    });
-    
+    // A standard error handler - it picks up any left over errors and returns a nicely formatted server 500 error
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: false }));
+
     /* Important :: Must be declare first. DO NOT PUT ROUTES ABOVE THIS LINE */
     app.all('/private*', authoriseRoute);
     
@@ -101,23 +100,3 @@ authoriseRoute = function (req, res, callback) {
 	}
 	else callback();
 }
-
-function getStatRefreshDate() {
-  /*exists(config.statDateFile, function (exists) {
-    if(exists) {
-      fs.lstat(config.statDateFile, function(err, stats) {
-        if(err) app.locals.statrefreshdate = 'never';
-        else app.locals.statrefreshdate = dateFormat(stats.mtime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-      })
-    } else {
-      //fs.writeFileSync(config.statDateFile, new Date());
-      app.locals.statrefreshdate = 'never';
-    }
-  });
-  */
-}
-
-/*fs.watchFile(config.statDateFile, { persistent: true, interval: 5007 }, function (curr, prev) {
-  console.log('statdatefile changed');
-  app.locals.statrefreshdate = dateFormat(curr.mtime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-});*/

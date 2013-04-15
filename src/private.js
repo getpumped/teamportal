@@ -186,12 +186,17 @@ module.exports = {
             pumped.updateUser(req.session.user._id, { plannedmileage: req.body.plannedmileage
                              , teamname: req.body.teamname, teamId: team._id,
                                 fundraisingtarget: req.body.fundraisingtarget  }, function(err, user) {
-                               mailer.sendMemberWelcome(user, function(err) {
+                              if(err) {
+                                req.flash('errors', "There was a problem with join the team");
+                                res.redirect('/');
+                               } else {
+                                mailer.sendMemberWelcome(user, function(err) {
                                   user.isAuthenticated = true;
                                   req.session.user = user;
                                   req.flash('messages', 'You\'ve joined ' + req.body.teamname);    
                                   res.redirect('/private');
                                 });
+                               }
                              });
       
           }
@@ -210,29 +215,31 @@ module.exports = {
     });
   },
   exportData: function(req, res) {
-    exists(config.appRoot + '/pumped_extract.csv', function(doesExist) {
-      if(doesExist)
-        fs.unlinkSync(config.appRoot + '/pumped_extract.csv');
-      
-      var teamlogs = mongoClient.collection('teamlogs');
-      teamlogs.find().toArray(function (err, logs) {
-        if(logs && logs.length > 0) {
-          json2csv({data: logs, fields: ['date', 'username', 'logtype', 'mileage', 'teamname']}, function(err, csv) {
-            if (err) {
-              req.flash('errors', "There was a problem with the export");
-              res.redirect('/private/account');
-            } else {
-              fs.appendFileSync(path.normalize(config.appRoot + '/pumped_extract.csv'), csv);
-              res.setHeader('Content-disposition', 'attachment; filename=pumped_extract.csv');
-              res.setHeader('Content-type', 'text/csv');
-              res.send(fs.readFileSync(config.appRoot + '/pumped_extract.csv'));
-            }
-          });
-        } else {
-          req.flash('errors', "There were no records to export");
-          res.redirect('/private/account');
-        }
-      });
+    var d = require('domain').create();
+    d.on('error', function(err){
+        // handle the error safely
+        req.flash('errors', "There were no records to export");
+        res.redirect('/private/account');
     });
+    d.run(function() {
+        var teamlogs = mongoClient.collection('teamlogs');
+        teamlogs.find().toArray(function (err, logs) {
+          if(logs && logs.length > 0) {
+            json2csv({data: logs, fields: ['date', 'username', 'logtype', 'mileage', 'teamname']}, function(err, csv) {
+              if (err) {
+                req.flash('errors', "There was a problem with the export");
+                res.redirect('/private/account');
+              } else {
+                res.setHeader('Content-disposition', 'attachment; filename=pumped_extract.csv');
+                res.setHeader('Content-type', 'text/csv');
+                res.send(csv);
+              }
+            });
+          } else {
+            req.flash('errors', "There were no records to export");
+            res.redirect('/private/account');
+          }
+        });
+      });
   }
 }
