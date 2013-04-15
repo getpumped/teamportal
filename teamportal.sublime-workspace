@@ -1,0 +1,243 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"pro",
+				"process"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Nodejs/SublimeText-Nodejs/Nodejs.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 192.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": true,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/Source/Projects/teamportal/views/snippets/signin.ejs",
+		"/D/Source/Projects/teamportal/views/login.ejs",
+		"/D/Source/Projects/teamportal/views/register.ejs",
+		"/D/Source/Projects/teamportal/src/mailer.js",
+		"/D/Source/Projects/teamportal/views/emails/footer.ejs",
+		"/D/Source/Projects/teamportal/views/emails/layouts/default.ejs",
+		"/D/Source/Projects/teamportal/src/private.js",
+		"/D/Source/Projects/teamportal/views/snippets/register.ejs",
+		"/D/Source/Projects/teamportal/src/stats.js",
+		"/D/Source/Projects/teamportal/src/public.js",
+		"/D/Source/Projects/teamportal/src/email_tests.js",
+		"/D/Source/Projects/teamportal/views/emails/header.ejs",
+		"/D/Source/Projects/teamportal/src/pumped.js",
+		"/D/Source/Projects/teamportal/views/private/account.ejs",
+		"/D/Source/Projects/teamportal/views/index.ejs",
+		"/D/Source/Projects/teamportal/views/private/private.ejs",
+		"/D/Source/Projects/teamportal/server.js",
+		"/D/Source/Projects/teamportal/src/routes.js",
+		"/D/Source/Projects/teamportal/config.js",
+		"/D/Source/Projects/teamportal/views/snippets/header.ejs",
+		"/D/Source/Projects/teamportal/public/css/style.styl",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/server/lib/security.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/server/server.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/templates/login.tpl.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/client/index.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/index.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/app.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/directives.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/server/test/unit/security.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/server/test/e2e/security.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/dist/index.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/gruntFile.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/server/config.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/services.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/controllers.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/server/node_modules/restler/README.md",
+		"/C/Users/Oliver.Cox/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Oliver.Cox/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Oliver.Cox/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/client/app/app.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/services/common-services.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/server/test/security.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/filters.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/filters/filters.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/clientsrc/index.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/dist/public.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/clientsrc/app/app.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/clientsrc/app/directives.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/clientsrc/app/filters.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/clientsrc/app/services.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/clientsrc/templates/dashboard.tpl.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/clientsrc/templates/promotions.tpl.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/templates/home.tpl.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/less/stylesheet.less",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/assets/favicon.ico",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/package.json",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/publicsrc/filters.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/publicsrc/services.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/dist/templates/app.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/publicsrc/directives.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/dist/filters.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/templates/about.tpl.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/publicapp/services.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/publicapp/filters.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/publicapp/directives.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/server/package.json",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/security/login/LoginFormController.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/login.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/app/header.tpl.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/security/login/toolbar.tpl.html",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/security/security.js",
+		"/D/Source/Projects/CrowdPowered2/Web.UI/client/src/common/security/login/form.tpl.html",
+		"/D/Source/Projects/SchmineFBApp/schmine/package.json",
+		"/D/Source/Projects/SchmineFBApp/schmine/views/header.ejs",
+		"/D/Source/Projects/SchmineFBApp/schmine/views/index_old.ejs",
+		"/D/Source/Projects/SchmineFBApp/schmine/views/index.ejs",
+		"/D/Source/Projects/SchmineFBApp/schmine/views/enter-draw.ejs",
+		"/D/Source/Projects/SchmineFBApp/schmine/web.js",
+		"/C/Users/Oliver.Cox/AppData/Roaming/Sublime Text 2/Packages/User/Distraction Free.sublime-settings",
+		"/D/Source/Projects/SchmineFBApp/schmine-api/web.js",
+		"/D/Source/Projects/SchmineFBApp/schmine-api/node_modules/express/lib/view.js",
+		"/C/Users/Oliver.Cox/AppData/Roaming/Sublime Text 2/Packages/User/Nodejs.sublime-settings",
+		"/D/Source/Projects/SchmineFBApp/schmine-api/Procfile"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"teamId",
+			"app-version",
+			"folder",
+			"user",
+			"mockUpUser",
+			"user",
+			">\n",
+			"});"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"token",
+			"mockUpToken",
+			"token"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 234.0,
+	"status_bar_visible": true
+}
