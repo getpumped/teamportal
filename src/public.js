@@ -32,6 +32,13 @@ module.exports = {
       });
   },
   team: function(req, res) {
+    if(typeof req.params.id === "undefined") {
+      req.flash('errors', 'There was an error retrieving activity logs');
+      return res.render('team', { team: { teamname: 'Unknown' }, title: '', logs: []
+                , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
+                errors: req.flash('errors'), messages: req.flash('messages'),
+                leaderboard: [], teamLeaderboard: []});
+    }
     pumped.getTeam(new BSON.ObjectID(req.params.id), function(err, team) {
       if(err) {
         req.flash('errors', err);
@@ -44,6 +51,10 @@ module.exports = {
         function(err, logs) {
           if(err) {
             req.flash('errors', 'There was an error retrieving activity logs');
+            return res.render('team', { team: { teamname: 'Unknown' }, title: '', logs: []
+                , defaultDate: dateFormat(new Date(), "dd/mm/yyyy"), dateFormater: dateFormat,
+                errors: req.flash('errors'), messages: req.flash('messages'),
+                leaderboard: [], teamLeaderboard: []});
           }
           pumped.getLeaderboard(function(err, leaderboard) {
             console.log(leaderboard);
