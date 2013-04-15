@@ -97,9 +97,6 @@ module.exports = {
     try {
       check(req.body.plannedmileage, 'Invalid value entered for planned mileage').isInt(); 
       check(req.body.fundraisingtarget, 'Invalid value entered for fundraising target').isDecimal(); 
-      //check(req.body.fundraisingtotal, 'Invalid value entered for fundraising total').isDecimal(); 
-      if(req.body.teamfundraisingpage != '')
-        check(req.body.teamfundraisingpage, 'Invalid value entered for fundraising total').isUrl(); 
       check(req.body.logtypeunit, 'Invalid value entered for log unit').isIn(["mi","km"]); 
     } catch (e) {
       req.flash('errors', e.message); //Need to output these errors to the screen for the user

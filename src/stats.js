@@ -16,7 +16,7 @@ module.exports = {
     teamlogs.mapReduce(map, reduce, {out: {replace : 'tempCollection'}}, function(err, collection) {
       collection.find().each(function(err, item) {
         if(item != null) {
-          leaderboard.update({ _id: item._id }, item, { upsert:true }, function(err, result) {
+          leaderboard.update({ _id: item._id }, {_id: item._id, value: parseFloat(item.value)}, { upsert:true }, function(err, result) {
           
           });
         } else callback(err);
@@ -39,7 +39,7 @@ module.exports = {
     teamlogs.mapReduce(map, reduce, { out: {replace : 'tempCollection'}}, function(err, collection) {
       collection.find().each(function(err, item) {
         if(item != null) {
-          teamleaderboard.update({ _id: item._id }, item, { upsert:true }, function(err, result) {
+          teamleaderboard.update({ _id: item._id }, {_id: item._id, value: parseFloat(item.value)}, { upsert:true }, function(err, result) {
           
           });
         } else callback(err);
@@ -63,7 +63,7 @@ module.exports = {
     teamlogs.mapReduce(map, reduce, {out: {replace : 'tempCollection'}}, function(err, collection) {
       collection.find().each(function(err, item) {
         if(item != null) {
-          committedleaderboard.update({ _id: item._id }, item, { upsert:true }, function(err, result) {
+          committedleaderboard.update({ _id: item._id }, {_id: item._id, value: parseInt(item.value)}, { upsert:true }, function(err, result) {
           
           });
         } else callback(err);
@@ -87,7 +87,7 @@ module.exports = {
     teamlogs.mapReduce(map, reduce, { out: {replace : 'tempCollection'}}, function(err, collection) {
       collection.find().each(function(err, item) {
         if(item != null) {
-          ironmanleaderboard.update({ _id: item._id }, item, { upsert:true }, function(err, result) {
+          ironmanleaderboard.update({ _id: item._id }, {_id: item._id, value: parseFloat(item.value)}, { upsert:true }, function(err, result) {
           
           });
         } else callback(err);

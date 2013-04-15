@@ -12,7 +12,7 @@
     <tr>
       <td><%= i+1 %></td>
       <td><%= ironmanLeaderboard[i]._id.username %></td>
-      <td><%= ironmanLeaderboard[i].value %> mi</td>
+      <td><%= parseFloat(ironmanLeaderboard[i].value).toFixed(2) %> mi</td>
     </tr>
   <% } %>
   </tbody>

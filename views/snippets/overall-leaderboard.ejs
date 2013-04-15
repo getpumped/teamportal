@@ -13,7 +13,7 @@
       <td><%= i+1 %></td>
       <td><a href="/team/<%= leaderboard[i]._id.teamid %>">
         <%= leaderboard[i]._id.teamname %></a></td>
-      <td><%= leaderboard[i].value %> mi</td>
+      <td><%= parseFloat(leaderboard[i].value).toFixed(2) %> mi</td>
     </tr>
   <% } %>
   </tbody>

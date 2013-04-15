@@ -19,6 +19,54 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/private.js",
+			"settings":
+			{
+				"buffer_size": 11845,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/stats.js",
+			"settings":
+			{
+				"buffer_size": 3714,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "config.js",
+			"settings":
+			{
+				"buffer_size": 1012,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/snippets/overall-leaderboard.ejs",
+			"settings":
+			{
+				"buffer_size": 476,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/snippets/ironman-leaderboard.ejs",
+			"settings":
+			{
+				"buffer_size": 439,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/snippets/team-leaderboard.ejs",
+			"settings":
+			{
+				"buffer_size": 467,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "Packages/Nodejs/SublimeText-Nodejs/Nodejs.sublime-build",
 	"command_palette":
@@ -134,7 +182,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			""
@@ -173,8 +221,177 @@
 	"groups":
 	[
 		{
+			"selected": 5,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/private.js",
+					"settings":
+					{
+						"buffer_size": 11845,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3091,
+								3080
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 25.0,
+						"translation.y": 798.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/stats.js",
+					"settings":
+					{
+						"buffer_size": 3714,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3660,
+								3660
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1026.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "config.js",
+					"settings":
+					{
+						"buffer_size": 1012,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								896,
+								896
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "views/snippets/overall-leaderboard.ejs",
+					"settings":
+					{
+						"buffer_size": 476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								425,
+								413
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/snippets/ironman-leaderboard.ejs",
+					"settings":
+					{
+						"buffer_size": 439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								349,
+								349
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/snippets/team-leaderboard.ejs",
+					"settings":
+					{
+						"buffer_size": 467,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								467,
+								467
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
