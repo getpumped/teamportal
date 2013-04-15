@@ -2,7 +2,7 @@ module.exports = {
   buildLeaderboard: function(callback) {
     var teamlogs = mongoClient.collection('teamlogs');
      // Map function
-    var map = function() { emit({ teamname:this.teamname, teamid:this.teamid }, this.mileage); };
+    var map = function() { emit({ teamname:this.teamname, teamid:this.teamId }, this.mileage); };
     // Reduce function
       var reduce = function(k, v){
         printjson(v);
@@ -26,7 +26,7 @@ module.exports = {
   buildTeamLeaderboard: function(callback) {
     var teamlogs = mongoClient.collection('teamlogs');
     // Map function
-    var map = function() { emit({ username:this.username, userid:this.userid, teamname:this.teamname, teamid: this.teamid }, this.mileage); };
+    var map = function() { emit({ username:this.username, userid:this.userid, teamname:this.teamname, teamid: this.teamId }, this.mileage); };
     // Reduce function
     var reduce = function(k, v){
       count = 0;
@@ -49,7 +49,7 @@ module.exports = {
   buildCommittedLeaderboard: function(callback) {
     var teamlogs = mongoClient.collection('teamlogs');
      // Map function
-    var map = function() { emit({ username:this.username, userid:this.userid, teamname:this.teamname, teamid: this.teamid }, 1); };
+    var map = function() { emit({ username:this.username, userid:this.userid, teamname:this.teamname, teamid: this.teamId }, 1); };
     // Reduce function
       var reduce = function(k, v){
           count = 0;
@@ -73,7 +73,7 @@ module.exports = {
   buildIronmanLeaderboard: function(callback) {
     var teamlogs = mongoClient.collection('teamlogs');
      // Map function
-    var map = function() { emit({ username:this.username, userid:this.userid, teamname:this.teamname, teamid: this.teamid }, this.mileage); };
+    var map = function() { emit({ username:this.username, userid:this.userid, teamname:this.teamname, teamid: this.teamId }, this.mileage); };
     // Reduce function
     var reduce = function(k, v){
       max = 0;

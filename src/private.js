@@ -71,7 +71,7 @@ module.exports = {
       return res.redirect('/private');
     }
     pumped.saveLog({ date: date, logtype: req.body.logtype, mileage: parseFloat(req.body.mileage*config.conversionFactor[req.body.logtypeunit]).toFixed(2),
-                    teamname: req.session.user.teamname, username: req.session.user.username },
+                    teamname: req.session.user.teamname, teamId: req.session.user.teamId, username: req.session.user.username },
                   function(err, result) {
                     if(err) {
                       req.flash('errors', err);
