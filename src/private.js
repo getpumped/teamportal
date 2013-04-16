@@ -12,6 +12,23 @@ var pumped = require('./pumped'),
     exists = fs.exists || require('path').exists
     json2csv = require('json2csv');
 
+function convertJson2Csv(data, fields, callback) {
+  try {
+    var array = typeof data != 'object' ? JSON.parse(data) : data;
+    var str = '';
+    for (var i = 0; i < array.length; i++) {
+      var line = [];
+      for (var field in fields) {
+          line.push(array[i][fields[field]]);
+      }
+      str += line.join() + '\r\n';
+    }
+    callback(null, str);
+  } catch (ex) {
+    callback(ex, null);
+  }
+}
+
 module.exports = {
   index: function(req, res) {
     if(req.session.user.teamname === null) {
@@ -23,12 +40,10 @@ module.exports = {
             req.flash('errors', 'There was an error retrieving activity logs');
           }
           pumped.getLeaderboard(function(err, leaderboard) {
-            console.log(leaderboard);
             if(err) {
               req.flash('errors', 'There was an error retrieving leaderboard');
             }
             pumped.getTeamLeaderboard(req.session.user.teamname, function(err, teamLeaderboard) {
-              console.log(teamLeaderboard);
               if(err) {
                 req.flash('errors', 'There was an error retrieving team leaderboard');
               }
@@ -62,7 +77,6 @@ module.exports = {
     var dateparts = req.body.date.split('/');
     var date =  [dateparts[1], dateparts[0], dateparts[2]].join('/');
     try {
-      console.log(date);
       check(date, 'Invalid date entered').isDate();
       check(req.body.logtype, 'Invalid activity type entered').notNull().notEmpty();
       check(req.body.mileage, 'Invalid mileage entered. Must be a number greater than 0.1').isDecimal().min(0.1);
@@ -178,7 +192,6 @@ module.exports = {
           req.flash('errors', err);
           res.redirect('/private/join-team');
         } else {
-          console.log(team.teampassword, req.body.teampassword)
           if(team.teampassword !== req.body.teampassword) {
             req.flash('errors', 'The password enter was incorrect'); //Need to output these errors to the screen for the user
             res.redirect('/private/join-team');
@@ -216,15 +229,18 @@ module.exports = {
   },
   exportData: function(req, res) {
     var teamlogs = mongoClient.collection('teamlogs');
+    var fields = [ 'date', 'username', 'logtype', 'mileage', 'teamname' ];
+    var header = "date,username,logtype,mileage,teamname\r\n";
     teamlogs.find().toArray(function (err, logs) {
       if(logs && logs.length > 0) {
-        json2csv({data: logs, fields: ['date', 'username', 'logtype', 'mileage', 'teamname']}, function(err, csv) {
+        convertJson2Csv(logs, fields, function(err, csv) {
           if (err) {
+            console.log(err)
             req.flash('errors', "There was a problem with the export");
             res.redirect('/private/account');
           } else {
             res.setHeader('Content-disposition', 'attachment; filename=pumped_extract.csv');
-            res.setHeader('Content-type', 'text/csv');
+            res.setHeader('Content-type', 'text/csv; charset=utf-8');
             res.send(csv);
           }
         });
@@ -236,17 +252,20 @@ module.exports = {
   },
   exportUserData: function(req, res) {
     var usersCollection = mongoClient.collection('users');
+    var fields = [ 'email', 'username', 'forename', 'surname'
+      , 'plannedmileage', 'teamname', 'newsletters', 'teamupdates'];
+    var header = "email,username,forename,surname,plannedmileage,teamname,newsletters,teamupdates\r\n";
     usersCollection.find().toArray(function (err, users) {
       if(users && users.length > 0) {
-        json2csv({data: users, fields: ['email', 'username', 'forename', 'surname', 'plannedmileage', 'teamname', 'newsletters', 'teamupdates']}, function(err, csv) {
+        convertJson2Csv(users, fields, function(err, csv) {
           if (err) {
-            console.log(err)
+            console.log(err);
             req.flash('errors', "There was a problem with the export");
             res.redirect('/private/account');
           } else {
             res.setHeader('Content-disposition', 'attachment; filename=pumped_users_extract.csv');
-            res.setHeader('Content-type', 'text/csv');
-            res.send(csv);
+            res.setHeader('Content-type', 'text/csv; charset=utf-8');
+            res.send(header + csv);
           }
         });
       } else {

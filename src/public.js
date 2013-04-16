@@ -10,17 +10,14 @@ var pumped = require('./pumped'),
 module.exports = {
   index: function(req, res) {
     pumped.getLeaderboard(function(err, leaderboard) {
-            console.log(leaderboard);
             if(err) {
               req.flash('errors', 'There was an error retrieving leaderboard');
             }
             pumped.getIronmanLeaderboard(function(err, ironmanLeaderboard) {
-              console.log(ironmanLeaderboard);
               if(err) {
                 req.flash('errors', 'There was an error retrieving ironman leaderboard');
               }
               pumped.getCommittedLeaderboard(function(err, commitmentLeaderboard) {
-                console.log(commitmentLeaderboard);
                 if(err) {
                   req.flash('errors', 'There was an error retrieving commitment leaderboard');
                 }
@@ -57,12 +54,10 @@ module.exports = {
                 leaderboard: [], teamLeaderboard: []});
           }
           pumped.getLeaderboard(function(err, leaderboard) {
-            console.log(leaderboard);
             if(err) {
               req.flash('errors', 'There was an error retrieving leaderboard');
             }
             pumped.getTeamLeaderboard(team.teamname, function(err, teamLeaderboard) {
-              console.log(teamLeaderboard);
               if(err) {
                 req.flash('errors', 'There was an error retrieving team leaderboard');
               }
@@ -77,17 +72,14 @@ module.exports = {
   },
   stats: function(req, res) {
     pumped.getLeaderboard(function(err, leaderboard) {
-            console.log(leaderboard);
             if(err) {
               req.flash('errors', 'There was an error retrieving leaderboard');
             }
             pumped.getIronmanLeaderboard(function(err, ironmanLeaderboard) {
-              console.log(ironmanLeaderboard);
               if(err) {
                 req.flash('errors', 'There was an error retrieving ironman leaderboard');
               }
               pumped.getCommittedLeaderboard(function(err, commitmentLeaderboard) {
-                console.log(commitmentLeaderboard);
                 if(err) {
                   req.flash('errors', 'There was an error retrieving commitment leaderboard');
                 }
@@ -100,17 +92,14 @@ module.exports = {
   },
   statsEmb: function(req, res) {
     pumped.getLeaderboard(function(err, leaderboard) {
-            console.log(leaderboard);
             if(err) {
               req.flash('errors', 'There was an error retrieving leaderboard');
             }
             pumped.getIronmanLeaderboard(function(err, ironmanLeaderboard) {
-              console.log(ironmanLeaderboard);
               if(err) {
                 req.flash('errors', 'There was an error retrieving ironman leaderboard');
               }
               pumped.getCommittedLeaderboard(function(err, commitmentLeaderboard) {
-                console.log(commitmentLeaderboard);
                 if(err) {
                   req.flash('errors', 'There was an error retrieving commitment leaderboard');
                 }
