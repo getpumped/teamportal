@@ -241,7 +241,8 @@ module.exports = {
           } else {
             res.setHeader('Content-disposition', 'attachment; filename=pumped_extract.csv');
             res.setHeader('Content-type', 'text/csv; charset=utf-8');
-            res.send(csv);
+            res.setHeader('Last-Modified', new Date());
+            res.send(header + csv);
           }
         });
       } else {
@@ -264,7 +265,8 @@ module.exports = {
             res.redirect('/private/account');
           } else {
             res.setHeader('Content-disposition', 'attachment; filename=pumped_users_extract.csv');
-            res.setHeader('Content-type', 'text/csv; charset=utf-8');
+            res.setHeader('Content-type', 'text/csv');
+            res.setHeader('Last-Modified', new Date());
             res.send(header + csv);
           }
         });
