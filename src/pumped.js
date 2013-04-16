@@ -17,7 +17,7 @@ module.exports = {
   },
   checkUsernameNotTaken: function(username, callback) {
     var users = mongoClient.collection('users');
-    users.findOne({ username: username }, function(err, user) {
+    users.findOne({ username: new RegExp(req.body.username, 'i') }, function(err, user) {
       if(err) {
         callback('The was an error completing you user registration.', null);
       } else if(user !== null) {
