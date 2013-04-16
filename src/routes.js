@@ -98,3 +98,7 @@ exports.runjob = function(req, res) {
 exports.exportData = function(req, res) {
   private.exportData(req, res);
 }
+
+exports.exportUserData = function(req, res) {
+  private.exportUserData(req, res);
+}

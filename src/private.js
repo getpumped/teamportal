@@ -241,5 +241,34 @@ module.exports = {
           }
         });
       });
+  },
+   exportUserData: function(req, res) {
+    var d = require('domain').create();
+    d.on('error', function(err){
+        // handle the error safely
+        req.flash('errors', "There were no records to export");
+        res.redirect('/private/account');
+    });
+    d.run(function() {
+        var usersCollection = mongoClient.collection('users');
+        usersCollection.find().toArray(function (err, users) {
+          if(users && users.length > 0) {
+            json2csv({data: users, fields: ['email', 'username', 'forename', 'surname', 'plannedmileage', 'teamname', 'newsletters', 'teamupdates']}, function(err, csv) {
+              if (err) {
+                console.log(err)
+                req.flash('errors', "There was a problem with the export");
+                res.redirect('/private/account');
+              } else {
+                res.setHeader('Content-disposition', 'attachment; filename=pumped_users_extract.csv');
+                res.setHeader('Content-type', 'text/csv');
+                res.send(csv);
+              }
+            });
+          } else {
+            req.flash('errors', "There were no records to export");
+            res.redirect('/private/account');
+          }
+        });
+      });
   }
 }
