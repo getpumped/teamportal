@@ -124,7 +124,7 @@ module.exports = {
          req.flash('errors', err);
          res.redirect('/register');
        } else {
-         pumped.checkUserNotExists({ email: req.body.email}, function(err, user) {
+         pumped.checkUserNotExists({ email: new RegExp(req.body.email, 'i')}, function(err, user) {
            if(err) {
              req.flash('errors', err);
              res.redirect('/register');

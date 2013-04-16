@@ -144,7 +144,7 @@ module.exports = {
       req.flash('errors', e.message); //Need to output these errors to the screen for the user
       return res.redirect('/private/create-team');
     }
-    pumped.checkTeamNotExists({ teamname: req.body.teamname }, function(err, user) {
+    pumped.checkTeamNotExists({ teamname: new RegExp(req.body.teamname, 'i') }, function(err, user) {
       if(err) {
         req.flash('errors', err);
         res.redirect('/private/create-team');
@@ -187,7 +187,7 @@ module.exports = {
       req.flash('errors', 'Your already a member of a team (' + req.session.user.teamname + ').');
       res.redirect('/private/join-team');
     } else {
-      pumped.checkTeamExists({ teamname: req.body.teamname }, function(err, team) {
+      pumped.checkTeamExists({ teamname: new RegExp(req.body.teamname, 'i') }, function(err, team) {
         if(err) {
           req.flash('errors', err);
           res.redirect('/private/join-team');
